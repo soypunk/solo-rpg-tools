@@ -5,6 +5,8 @@ const utils = new Utils()
 const MythicGME = (() => {
 	constructor(){}
 
+	
+
 	return MythicGME;
 })();
 

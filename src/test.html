@@ -1,0 +1,35 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Solo RPG Tools Test</title>
+
+<main id="main" role="main">
+
+<h1>Test</h1>
+
+<div id="diceResultContainer">Result: <span id="diceResult"></span></div>
+
+<h2>P</h2>
+<ol id="plotlines"></ol>
+
+<h2>C</h2>
+<ol id="characters"></ol>
+
+<p>what</p>
+
+</main>
+
+<script defer>
+$dR = document.getElementById("diceResult")
+import('./utils.js')
+  .then((module) => {
+    const utils = module.default
+    let myUtils = new utils()
+    let diceResult = myUtils.rollDice(1,100)
+    
+    $dR.textContent = `Total: ${diceResult.total}`
+    
+  })
+  .catch(err => {
+    $dR.textContent = err  
+  });
+</script>

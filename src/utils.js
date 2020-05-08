@@ -1,4 +1,4 @@
-class Utils {
+export default class Utils {
     constructor() {}
 
     arrayToSentence(arr) {
@@ -14,8 +14,25 @@ class Utils {
 		return Math.min(Math.max(num, min), max)
 	}
 	
-	d100(){
-		return Math.floor(Math.random()*100);
+	rollDie(sides=6) {
+		return 1 + Math.floor(Math.random() * sides)
+	}
+	
+	rollDice(num=1, sides=6){
+		var total = 0
+		var diceRolls = []
+		var numRolled = num
+		while (num-- > 0) {
+			let dieRoll = this.rollDie(sides)
+			total += dieRoll
+			diceRolls.push(dieRoll)
+		}
+		return {
+			'numSides': sides, 
+			'numRolled': numRolled,
+			'diceRolls': diceRolls,
+			'total': total
+		}
 	}	 
     
     getRandom(arr, n=1) {
@@ -60,5 +77,3 @@ class Utils {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }	
 }
-
-export { Utils }
