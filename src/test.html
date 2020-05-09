@@ -8,7 +8,11 @@
 
 <div id="diceResultContainer">Result: <span id="diceResult"></span></div>
 
-<div id="extraContainer"></div>
+<div id="sceneContainer"></div>
+
+<div id="detailContainer"></div>
+
+<div id="statContainer"></div>
 
 <h2>P</h2>
 <ol id="plotlines"></ol>
@@ -22,7 +26,9 @@
 
 <script defer>
 $dR = document.getElementById("diceResult")
-$eC = document.getElementById("extraContainer")
+$sC = document.getElementById("sceneContainer")
+$dC = document.getElementById("detailContainer")
+$stC = document.getElementById("statContainer")
 
 /*
 import('./utils.js')
@@ -42,24 +48,30 @@ import('./mythic-gme.js')
   .then((module) => {
     const MythicGME = module.default
     let mgme = new MythicGME()
-    mgme.chaos = 9
-    let result = mgme.yes_no_question(5,5)
+    mgme.chaos = 5
+    let result = mgme.yesNoQuestion(5,5)
     
     $dR.textContent = `${result.answer} (${result.dice.total})`
     
     if (result.event) {
       $dR.textContent += ` Event: ${result.event.focus} - ${result.event.action} ${result.event.subject}`
     }
-    
-    let detailCheck = mgme.detail()
-    
-    $eC.textContent += `Detail: ${detailCheck.detail} (${detailCheck.dice.total})`
-    
+
+    let sceneCheck = mgme.sceneSetup()            
+    $sC.textContent += `Scene: ${sceneCheck.status} (${sceneCheck.dice.total})`
+    if (sceneCheck.event) {
+      $sC.textContent += ` | Event: ${sceneCheck.event.focus} - ${sceneCheck.event.action} ${sceneCheck.event.subject}`
+    }
+        
+    let detailCheck = mgme.detail()            
+    $dC.textContent += `Detail: ${detailCheck.detail} (${detailCheck.dice.total})`
     let action = mgme.action()
-    $eC.textContent += ` | Action: ${action}`
-    
+    $dC.textContent += ` | Action: ${action}`
     let description = mgme.description()
-    $eC.textContent += ` | Description: ${description}`
+    $dC.textContent += ` | Description: ${description}`
+    
+    let statCheck = mgme.statCheck(4,true,true,1,0)
+    $stC.textContent += `Stat: ${statCheck.result} (${statCheck.value})`
     
   })
   .catch(err => {

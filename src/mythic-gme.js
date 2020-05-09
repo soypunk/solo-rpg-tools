@@ -83,7 +83,7 @@ export default class MythicGME {
             [15, "Favors Thread"],
             [16, "Courage"],
             [17, "Happiness"],
-            [18, "Calm"]]
+            [24, "Calm"]]
         
         this._modifierTable = {
             "1": 4,
@@ -225,12 +225,12 @@ export default class MythicGME {
             "detail": detailResult,
             "dice": {
                 "total": diceResult.total,
-                "rolls": diceResult.diceRolls,                
+                "rolls": diceResult.diceRolls,
             }
         }
     }
     
-    yes_no_question(acting_rank, defending_rank) {
+    yesNoQuestion(acting_rank, defending_rank) {
         let diceResult = utils.rollDice(2,10,false)
         let die1 = diceResult.diceRolls[0]
         let die2 = diceResult.diceRolls[1]
@@ -265,4 +265,111 @@ export default class MythicGME {
             "event": event
         }
     }
+    
+    sceneSetup() {
+        let diceResult = utils.rollDice(1,10)
+        let res = "Scene unchanged"
+        let event = false
+        if (diceResult.total <= this.chaos) {
+            event = this.event()
+            if (diceResult.total * 2 < this.chaos + 2) {
+                res = "Scene altered"
+            } else {
+                res = "Scene interupted!"
+            }
+        }
+        return {
+            "status": res,
+            "event": event,
+            "dice": {
+                "total": diceResult.total,
+                "rolls": diceResult.diceRolls
+            }
+        }
+    }
+    
+	statCheck(attribute_value=null,
+	          important_npc=false,
+	          prime_attribute=false,
+	          weak_attributes=0,
+	          strong_attributes=0,
+	          round=true) {
+	  attribute_value = Number(attribute_value)
+	  let baseline_value = attribute_value
+	  let result = ''
+	  let rolls = utils.rollDice(2,10)
+	  let total = rolls.total
+	  
+	  if (important_npc) {
+	    total += 2
+	  }
+	  
+	  if (prime_attribute) {
+	    total += 4
+	  }
+	  
+      for(var i=0; i < weak_attributes; i++){
+        total -= 2  
+      }
+      
+      for(var i=0; i < strong_attributes; i++){
+        total += 2  
+      }
+
+	  if (total < 3) {
+		  var modifier = (75 / 100) * attribute_value;
+		  attribute_value = attribute_value - modifier;
+		  result = "Very Weak -75%";
+	  } else if (total < 5) {
+		  var modifier = (50 / 100) * attribute_value;
+		  attribute_value = attribute_value - modifier;
+		  result = 'Weak -50%';
+	  } else if (total < 7) {
+		  var modifier = (10 / 100) * attribute_value;
+		  attribute_value = attribute_value - modifier;
+		  result = 'Less -10%';
+	  } else if (total < 12) {
+		  result = 'Expected Baseline';
+	  } else if (total < 15) {
+		  var modifier = (10 / 100) * attribute_value;
+		  attribute_value = attribute_value + modifier;
+		  result = 'More +10%';
+	  } else if (total < 17) {
+		  var modifier = (50 / 100) * attribute_value;
+		  attribute_value = attribute_value + modifier;
+		  result = 'Strong +50%';
+	  } else if (total < 19) {
+		  var modifier = (100 / 100) * attribute_value;
+		  attribute_value = attribute_value + modifier;
+		  result = 'Very Strong +100%';
+	  } else if (total < 21) {
+		  result = 'PC Baseline';
+	  } else if (total < 23) {
+		  var modifier = (10 / 100) * attribute_value;
+		  attribute_value = attribute_value + modifier;
+		  result = 'PC More +10%';
+	  } else if (total < 25) {
+		  var modifier = (50 / 100) * attribute_value;
+		  attribute_value = attribute_value + modifier;
+		  result = 'PC Strong +50%';
+	  } else if (total < 27) {
+		  var modifier = (100 / 100) * attribute_value;
+		  attribute_value = attribute_value + modifier;
+		  result = 'PC Very Strong +100%';
+	  }
+
+	  if (baseline_value != Number(0) && baseline_value !== null) {
+	  	  if (round) {
+	  	  	attribute_value = Math.round(attribute_value);
+	  	  }
+	  }
+	  return {
+		  "result": result,
+		  "value": attribute_value,
+		  "dice": {
+    		    "rolls": rolls.diceRolls,
+		    "total": total
+		  }
+	  }
+	}
 }
