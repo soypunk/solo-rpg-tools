@@ -63,6 +63,39 @@ export default class MythicGME {
             "Awesome",
             "Superhumna",
             "Superhuman 2+"]
+            
+        this._eventMeaningActions = ['Attainment', 'Starting', 'Neglect', 'Fight', 'Recruit', 'Triumph', 'Violate', 'Oppose', 'Malice', 'Communicate', 'Persecute', 'Increase', 'Decrease', 'Abandon', 'Gratify', 'Inquire', 'Antagonise', 'Move', 'Waste', 'Truce', 'Release', 'Befriend', 'Judge', 'Desert', 'Dominate', 'Procrastinate', 'Praise', 'Separate', 'Take', 'Break', 'Heal', 'Delay', 'Stop', 'Lie', 'Return', 'Immitate', 'Struggle', 'Inform', 'Bestow', 'Postpone', 'Expose', 'Haggle', 'Imprison', 'Release', 'Celebrate', 'Develop', 'Travel', 'Block', 'Harm', 'Debase', 'Overindulge', 'Adjourn', 'Adversity', 'Kill', 'Disrupt', 'Usurp', 'Create', 'Betray', 'Agree', 'Abuse', 'Oppress', 'Inspect', 'Ambush', 'Spy', 'Attach', 'Carry', 'Open', 'Carelessness', 'Ruin', 'Extravagance', 'Trick', 'Arrive', 'Propose', 'Divide', 'Refuse', 'Mistrust', 'Deceive', 'Cruelty', 'Intolerance', 'Trust', 'Excitement', 'Activity', 'Assist', 'Care', 'Negligence', 'Passion', 'Work hard', 'Control', 'Attract', 'Failure', 'Pursue', 'Vengeance', 'Proceedings', 'Dispute', 'Punish', 'Guide', 'Transform', 'Overthrow', 'Oppress', 'Change']
+        
+        this._eventMeaningSubjects = ['Goals','Dreams','Environment','Outside','Inside','Reality','Allies','Enemies','Evil','Good','Emotions','Opposition','War','Peace','The innocent','Love','The spiritual','The intellectual','New ideas','Joy','Messages','Energy','Balance','Tension','Friendship','The physical','A project','Pleasures','Pain','Possessions','Benefits','Plans','Lies','Expectations','Legal matters','Bureaucracy','Business','A path','News','Exterior factors','Advice','A plot','Competition','Prison','Illness','Food','Attention','Success','Failure','Travel','Jealousy','Dispute','Home','Investment','Suffering','Wishes','Tactics','Stalemate','Randomness','Misfortune','Death','Disruption','Power','A burden','Intrigues','Fears','Ambush','Rumor','Wounds','Extravagance','A representative','Adversities','Opulence','Liberty','Military','The mundane','Trials','Masses','Vehicle','Art','Victory','Dispute','Riches','Status quo','Technology','Hope','Magic','Illusions','Portals','Danger','Weapons','Animals','Weather','Elements','Nature','The public','Leadership','Fame','Anger','Information']           
+        
+        this._detailsChart = [
+            [-4, "Anger"],
+            [5, "Sadness"],
+            [6, "Fear"],
+            [7, "Disfavors Thread"],
+            [8, "Disfavors PC"],
+            [9, "Focus NPC"],
+            [10, "Favors NPC"],
+            [11, "Focus PC"],
+            [12, "Disfavors NPC"],
+            [13, "Focus Thread"],
+            [14, "Favors NPC"],
+            [15, "Favors Thread"],
+            [16, "Courage"],
+            [17, "Happiness"],
+            [18, "Calm"]]
+        
+        this._modifierTable = {
+            "1": 4,
+            "2": 3,
+            "3": 2,
+            "4": 1,
+            "5": 0,
+            "6": 1,
+            "7": 2,
+            "8": 3,
+            "9": 4           
+        }
 	}
 
     get chaos() {
@@ -109,12 +142,92 @@ export default class MythicGME {
         return this._eventFocus;
     }
     
+    get eventMeaningActions() {
+        return this._eventMeaningActions;
+    }
+    
+    get eventMeaningSubjects() {
+        return this._eventMeaningSubjects;
+    }    
+    
     get oddsLabels() {
         return this._oddsLabels;
     }
     
     get rankLabels() {
         return this._rankLabels;
+    }
+    
+    get modifierTable() {
+        return this._modifierTable;    
+    }
+    
+    get detailsChart() {
+        return this._detailsChart;    
+    }
+    
+    description() {
+        let descriptor_one_table = ["Abnormally","Adventurously","Aggressively","Angrily","Anxiously","Awkwardly","Beautifully", "Bleakly","Boldly","Bravely","Busily","Calmly","Carefully","Carelessly","Cautiously","Ceaselessly", "Cheerfully","Combatively","Coolly","Crazily","Fully","Generously","Gently","Gladly","Gracefully", "Gratefully","Happily","Hastily","Healthily","Helpfully","Helplessly","Hopelessly","Innocently", "Intensely","Interestingly","Irritatingly","Jovially","Joyfully","Judgementally","Kindly", "Peacefully","Perfectly","Playfully","Politely","Positively","Powerfully","Quaintly","Quarrelsomely", "Quietly","Roughly","Rudely","Ruthlessly","Slowly","Softly","Swiftly","Threateningly","Very","Violently", "Wildly","Yieldingly","Curiously","Daintily","Dangerously","Defiantly","Deliberately","Delightfully", "Dimly","Efficiently","Energetically","Enormously","Enthusiastically","Excitedly","Fearfully", "Ferociously","Fiercely","Foolishly","Fortunately","Frantically","Freely","Frighteningly","Kookily", "Lazily","Lightly","Loosely","Loudly","Lovingly","Loyally","Majestically","Meaningfully","Mechanically","Miserably","Mockingly","Mysteriously","Naturally","Neatly","Nicely","Oddly","Offensively","Officially","Partially", "Peacefully", "Perfectly", "Playfully", "Politely", "Positively", "Powerfully", "Quaintly","Quarrelsomely" , "Quietly", "Roughly", "Rudely", "Ruthlessly", "Slowly", "Softly", "Swiftly","Threateningly", "Very", "Violently", "Wildly", "Yieldingly"]
+        let descriptor_two_table = ["Abandoned","Abnormal","Amusing","Ancient","Aromatic","Average","Beautiful","Bizarre","Classy","Clean","Cold","Colorful","Creepy","Cute","Damaged","Dark","Defeated","Delicate","Delightful","Dirty","Graceful","Hard","Harsh","Healthy","Heavy","Historical","Horrible","Important","Interesting","Juvenile","Lacking","Lame","Large","Lavish","Lean","Less","Lethal","Lonely","Lovely","Macabre","Remarkable","Rotten","Rough","Ruined","Rustic","Scary","Simple","Small","Smelly","Smooth","Soft","Strong","Tranquil","Ugly","Valuable","Warlike","Warm","Watery","Weak","Young","Disagreeable","Disgusting","Drab","Dry","Dull","Empty","Enormous","Exotic","Faded","Familiar","Fancy","Fat","Feeble","Feminine","Festive","Flawless","Fresh","Full","Glorious","Good","Magnificent","Masculine","Mature","Messy","Mighty","Military","Modern","Extravagant","Mundane","Mysterious","Natural","Nondescript","Odd","Pale","Petite","Poor","Powerful","Quaint","Rare","Reassuring"]
+        var descriptor_one = descriptor_one_table[Math.floor(Math.random() * descriptor_one_table.length)]
+        var descriptor_two = descriptor_two_table[Math.floor(Math.random() * descriptor_two_table.length)]
+        return `${descriptor_one} ${descriptor_two}`
+    }
+    
+    action() {
+        let action_one_table = ["Attainment","Starting","Neglect","Fight","Recruit","Triumph","Violate","Oppose","Malice","Communicate","Persecute","Increase","Decrease","Abandon","Gratify","Inquire","Antagonize","Move","Waste","Truce","Expose","Haggle","Imprison","Release","Celebrate","Develop","Travel","Block","Harm","Debase","Overindulge","Adjourn","Adversity","Kill","Disrupt","Usurp","Create","Betray","Agree","Abuse","Excitement","Activity","Assist","Care","Negligence","Passion","Work","Control","Attract","Failure","Pursue","Vengeance","Proceedings","Dispute","Punish","Guide","Transform","Overthrow","Oppress","Change","Release","Befriend","Judge","Desert","Dominate","Procrastinate","Praise","Separate","Take","Break","Heal","Delay","Stop","Lie","Return","Imitate","Struggle","Inform","Bestow","Postpone","Oppress","Inspect","Ambush","Spy","Attach","Carry","Open","Carelessness","Ruin","Extravagance","Trick","Arrive","Propose","Divide","Refuse","Mistrust","Deceive","Cruelty","Intolerance","Trust"]
+        let action_two_table = ["Goals","Dreams","Environment","Outside","Inside","Reality","Allies","Enemies","Evil","Good", "Emotions","Opposition","War","Peace","Innocent","Love","Spirit","Intellect","Ideas","Joy", "Advice","Plot","Competition","Prison","Illness","Food","Attention","Success","Failure","Travel", "Jealousy","Dispute","Home","Investment","Suffering","Wishes","Tactics","Stalemate","Randomness", "Misfortune","Victory","Dispute","Riches","Normal","Technology","Hope","Magic","Illusions","Portals", "Danger","Weapons","Animals","Weather","Elements","Nature","Masses","Leadership","Fame","Anger", "Information","Messages","Energy","Balance","Tension","Friendship","Physical","Project","Pleasures", "Pain","Possessions","Benefits","Plans","Lies","Expectations","Legal","Bureaucracy","Business", "Path","News","Exterior","Death","Disruption","Power","Burden","Intrigues","Fears","Ambush","Rumor", "Wounds","Extravagance","Representative","Adversities","Opulence","Liberty","Military","Mundane", "Trials","Masses","Vehicle","Art"]
+        var action_one = action_one_table[Math.floor(Math.random() * action_one_table.length)]
+        var action_two = action_two_table[Math.floor(Math.random() * action_two_table.length)]
+        return `${action_one} ${action_two}`
+    }    
+    
+    event() {        
+        let eventFocusDiceResult = utils.rollDice(1,100)
+        let eventFocus = null
+        for (var i = 0; i < this.eventFocusChart.length; i++){
+            if (eventFocusDiceResult.total < this.eventFocusChart[i][0]) {
+                eventFocus = this.eventFocusChart[i][1];
+                break;
+            }
+        }
+        let eventMeaningDiceResult = utils.rollDice(2,100,false)
+        let eventAction = this.eventMeaningActions[eventMeaningDiceResult.diceRolls[0]]
+        let eventSubject = this.eventMeaningSubjects[eventMeaningDiceResult.diceRolls[1]]
+        
+        return {
+            "focus": eventFocus,
+            "action": eventAction,
+            "subject": eventSubject,
+            "dice": {
+                "rolls": eventFocusDiceResult.diceRolls.concat(eventMeaningDiceResult.diceRolls)
+            }
+        }
+    }
+    
+    detail() {
+        let modifier = this.modifierTable[this.chaos]
+        if(this.chaos > 5) {
+            modifier = -Math.abs(modifier)
+        }
+        let diceResult = utils.rollDice(2,10)
+        diceResult.total = diceResult.total + modifier
+
+        let detailResult = null        
+        for (var i = 0; i < this.detailsChart.length; i++){
+            if (diceResult.total < this.detailsChart[i][0]) {
+                detailResult = this.detailsChart[i][1];
+                break;
+            }
+        }
+        
+        return {
+            "detail": detailResult,
+            "dice": {
+                "total": diceResult.total,
+                "rolls": diceResult.diceRolls,                
+            }
+        }
     }
     
     yes_no_question(acting_rank, defending_rank) {
@@ -124,8 +237,7 @@ export default class MythicGME {
         let res = (die1 + die2 === 0)?100: die1*10+die2
         let event = false
         if (die1 === die2 && die1 <= this.chaos && res != 100) {
-            event = true
-            //rollEvent();
+            event = this.event()
         }
         // acting can also be "odds" and defending "chaos"        
         let yes = this.fateChart[acting_rank][defending_rank]
