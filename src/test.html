@@ -20,16 +20,31 @@
 
 <script defer>
 $dR = document.getElementById("diceResult")
+
+/*
 import('./utils.js')
   .then((module) => {
-    const utils = module.default
-    let myUtils = new utils()
-    let diceResult = myUtils.rollDice(1,100)
+    const Utils = module.default
+    let utils = new Utils()
+    let result = utils.rollDice(2,10,false)
     
-    $dR.textContent = `Total: ${diceResult.total}`
-    
+    $dR.textContent = `${result.diceRolls[0]} ${result.diceRolls[1]}`  
   })
   .catch(err => {
     $dR.textContent = err  
   });
+*/
+
+import('./mythic-gme.js')
+  .then((module) => {
+    const MythicGME = module.default
+    let mgme = new MythicGME()
+    let result = mgme.yes_no_question(5,5)
+    
+    $dR.textContent = `${result.answer} (${result.dice.total})`  
+  })
+  .catch(err => {
+    $dR.textContent = err  
+  });
+
 </script>

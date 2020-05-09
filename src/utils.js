@@ -14,16 +14,21 @@ export default class Utils {
 		return Math.min(Math.max(num, min), max)
 	}
 	
-	rollDie(sides=6) {
-		return 1 + Math.floor(Math.random() * sides)
+	rollDie(sides=6, correct_roll=true) {
+		let roll = Math.floor(Math.random() * sides)
+		if (correct_roll) {
+			return ++roll
+		} else { 
+			return roll
+		}
 	}
 	
-	rollDice(num=1, sides=6){
+	rollDice(num=1, sides=6, correct_rolls=true){
 		var total = 0
 		var diceRolls = []
 		var numRolled = num
 		while (num-- > 0) {
-			let dieRoll = this.rollDie(sides)
+			let dieRoll = this.rollDie(sides, correct_rolls)
 			total += dieRoll
 			diceRolls.push(dieRoll)
 		}
