@@ -184,13 +184,7 @@ export default class MythicGME {
     
     event() {        
         let eventFocusDiceResult = utils.rollDice(1,100)
-        let eventFocus = null
-        for (var i = 0; i < this.eventFocusChart.length; i++){
-            if (eventFocusDiceResult.total < this.eventFocusChart[i][0]) {
-                eventFocus = this.eventFocusChart[i][1];
-                break;
-            }
-        }
+        let eventFocus = utils.getClosetRolledMatch(this.eventFocusChart,eventFocusDiceResult.total)
         let eventMeaningDiceResult = utils.rollDice(2,100,false)
         let eventAction = this.eventMeaningActions[eventMeaningDiceResult.diceRolls[0]]
         let eventSubject = this.eventMeaningSubjects[eventMeaningDiceResult.diceRolls[1]]
@@ -200,6 +194,7 @@ export default class MythicGME {
             "action": eventAction,
             "subject": eventSubject,
             "dice": {
+                "total": eventFocusDiceResult.total,
                 "rolls": eventFocusDiceResult.diceRolls.concat(eventMeaningDiceResult.diceRolls)
             }
         }
@@ -213,13 +208,7 @@ export default class MythicGME {
         let diceResult = utils.rollDice(2,10)
         diceResult.total = diceResult.total + modifier
 
-        let detailResult = null        
-        for (var i = 0; i < this.detailsChart.length; i++){
-            if (diceResult.total < this.detailsChart[i][0]) {
-                detailResult = this.detailsChart[i][1];
-                break;
-            }
-        }
+        let detailResult = utils.getClosetRolledMatch(this.detailsChart,diceResult.total)
         
         return {
             "detail": detailResult,

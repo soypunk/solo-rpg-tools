@@ -6,6 +6,8 @@
 
 <h1>Test</h1>
 
+<h2>Theme: <span id="acTheme"></span></h2>
+
 <div id="diceResultContainer">Result: <span id="diceResult"></span></div>
 
 <div id="sceneContainer"></div>
@@ -25,6 +27,8 @@
 </main>
 
 <script defer>
+$acT = document.getElementById("acTheme")
+
 $dR = document.getElementById("diceResult")
 $sC = document.getElementById("sceneContainer")
 $dC = document.getElementById("detailContainer")
@@ -44,6 +48,20 @@ import('./utils.js')
   });
 */
 
+import('./adventure-crafter.js')
+  .then((module) => {
+    const AdventureCrafter = module.default
+    let ac = new AdventureCrafter()
+        
+    let theme = ac.theme()
+    
+    $acT.textContent = `${theme.result} (${theme.dice.total})`
+    
+  })
+  .catch(err => {
+    $dR.textContent = err  
+  });  
+
 import('./mythic-gme.js')
   .then((module) => {
     const MythicGME = module.default
@@ -54,13 +72,13 @@ import('./mythic-gme.js')
     $dR.textContent = `${result.answer} (${result.dice.total})`
     
     if (result.event) {
-      $dR.textContent += ` Event: ${result.event.focus} - ${result.event.action} ${result.event.subject}`
+      $dR.textContent += ` Event: ${result.event.focus} (${result.event.dice.total}) - ${result.event.action} ${result.event.subject}`
     }
 
     let sceneCheck = mgme.sceneSetup()            
     $sC.textContent += `Scene: ${sceneCheck.status} (${sceneCheck.dice.total})`
     if (sceneCheck.event) {
-      $sC.textContent += ` | Event: ${sceneCheck.event.focus} - ${sceneCheck.event.action} ${sceneCheck.event.subject}`
+      $sC.textContent += ` | Event: ${sceneCheck.event.focus} (${sceneCheck.event.dice.total}) - ${sceneCheck.event.action} ${sceneCheck.event.subject}`
     }
         
     let detailCheck = mgme.detail()            

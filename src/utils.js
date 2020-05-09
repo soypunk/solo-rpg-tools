@@ -70,6 +70,17 @@ export default class Utils {
         return +keys[i - 1]
     }
     
+    getClosetRolledMatch(arr,roll) {
+        let result = null        
+        for (var i = 0; i < arr.length; i++){
+            if (roll <= arr[i][0]) {
+                result = arr[i][1];
+                break;
+            }
+        }
+        return result
+    }
+    
 	getKeyByValue(object, value) {
 		return Object.keys(object).find(key => object[key] === value)
 	}
