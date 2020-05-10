@@ -87,6 +87,36 @@ export default class AdventureCrafter {
     	this._charactersList = list
     }
     
+    plotlineFromList() {    	
+    	let plotline_index = Math.floor(Math.random() * this.basePlotlinesTable.length)    	
+    	let plotline_item = this.basePlotlinesTable[plotline_index]
+    	let result = null
+    	if (plotline_item == "new") {
+			result = "new"
+    	} else { //logical
+    		result = this.plotlinesListList
+    	}
+		return {
+			"result": result,
+			"plotline_index": plotline_index
+		}
+    }
+    
+    characterFromList() {
+    	let character_index = Math.floor(Math.random() * this.baseCharactersTable.length)    	
+    	let character_item = this.baseCharactersTable[character_index]
+    	let result = null
+    	if (character_item == "new") {
+			result = "new"
+    	} else { //logical
+    		result = this.charactersList
+    	}
+		return {
+			"result": this.generateCharacter(),
+			"plotline_index": character_index
+		}    
+    }
+    
     randomBaseTheme() {
     	return this.baseThemes[Math.floor(Math.random() * this.baseThemes.length)]
     }
