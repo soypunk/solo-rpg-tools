@@ -14,7 +14,7 @@ const es6 = format === 'esm';
 export default {
   input: 'src/index.js',
   output: {
-    file: `lib/${format}/bundle${production ? '.min' : ''}.js`,
+    file: `lib/${format}/solo-rpg-tools${production ? '.min' : ''}.js`,
     format: format,
     name: 'soloRPGTools',
   },
