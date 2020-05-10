@@ -12,6 +12,24 @@ export default class AdventureCrafter {
         [7,this.themes[1]],
         [9,this.themes[2]],
         [10,`${this.themes[3]}/${this.themes[4]}`]]
+        this._basePlotlinesTable = [
+        	"logical","new",
+        	"logical","logical","logical","new",
+        	"logical","logical","logical","new",
+        	"logical","logical","logical","new",
+        	"logical","logical","logical","new",
+        	"logical","logical","logical","new",
+        	"logical","logical","logical"]
+        this._baseCharactersTable = [
+        	"new","new","new","logical",
+        	"new","new","new","logical",
+        	"new","new","new","logical",
+        	"new","logical","logical","logical",
+        	"new","logical","logical","logical"
+        	"new","logical","logical","logical",
+        	"new"]
+        this._plotlinesList = [],
+        this._charactersList = []
     }
     
     initThemesTable() {
@@ -43,6 +61,30 @@ export default class AdventureCrafter {
     
     get themesTable() {
         return this._themesTable
+    }
+    
+    get basePlotlinesTable() {
+    	return this._basePlotlinesTable
+    }
+    
+    get baseCharactersTable() {
+    	return this._baseCharactersTable
+    }
+    
+    get plotlinesList() {
+    	return this._plotlinesList
+    }
+    
+    set plotlinesList(list) {
+    	this._plotlinesList = list
+    }
+    
+    get charactersList() {
+    	return this._plotlinesList
+    }
+    
+    set charactersList(list) {
+    	this._charactersList = list
     }
     
     randomBaseTheme() {
