@@ -1,4 +1,4 @@
-import AdventureCrafter from './mythic-gme.js'
+import AdventureCrafter from './adventure-crafter.js'
 import MythicGME from './mythic-gme.js'
 import Utils from './utils.js'
 

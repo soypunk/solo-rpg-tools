@@ -25,7 +25,7 @@ export default class AdventureCrafter {
         	"new","new","new","logical",
         	"new","new","new","logical",
         	"new","logical","logical","logical",
-        	"new","logical","logical","logical"
+        	"new","logical","logical","logical",
         	"new","logical","logical","logical",
         	"new"]
         this._plotlinesList = [],
