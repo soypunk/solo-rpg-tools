@@ -8,20 +8,18 @@ export default class AdventureCrafter {
         this._baseThemes = ['Action','Tension','Mystery','Social','Personal']
         this._themes = this._baseThemes
         this._themesTable = [
-        [2,this.themes[0]],
-        [4,this.themes[1]],
-        [6,this.themes[2]],
-        [8,this.themes[3]],
-        [11,this.themes[4]]]
+        [4,this.themes[0]],
+        [7,this.themes[1]],
+        [9,this.themes[2]],
+        [10,`${this.themes[3]}/${this.themes[4]}`]]
     }
     
     initThemesTable() {
         this._themesTable = [
-        [2,this.themes[0]],
-        [4,this.themes[1]],
-        [6,this.themes[2]],
-        [8,this.themes[3]],
-        [11,this.themes[4]]]
+        [4,this.themes[0]],
+        [7,this.themes[1]],
+        [9,this.themes[2]],
+        [10,`${this.themes[3]}/${this.themes[4]}`]]
     }    
 
     get baseThemes() {
@@ -45,7 +43,25 @@ export default class AdventureCrafter {
     
     get themesTable() {
         return this._themesTable
-    }    
+    }
+    
+    randomBaseTheme() {
+    	return this.baseThemes[Math.floor(Math.random() * this.baseThemes.length)]
+    }
+    
+    buildThemesRandomly() {
+    	let themes = []
+		while (themes.length < 6) {
+			themes.push(
+				this.randomBaseTheme()
+			)
+		}
+		this.themes = themes
+		return {
+			"themes": this.themes,
+			"themesTable": this.themesTable
+		}
+    }
     
 	theme() {
 		let diceResult = utils.rollDice(1,10)
