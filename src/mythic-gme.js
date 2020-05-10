@@ -228,7 +228,9 @@ export default class MythicGME {
         if (die1 === die2 && die1 <= this.chaos && res != 100) {
             event = this.event()
         }
-        // acting can also be "odds" and defending "chaos"        
+        // acting can also be "odds" and defending "chaos"
+        // **YOU MUST PASS THE CHAOS NUMBER FLIPPED**
+        // e.g. 10 - this.chaos
         let yes = this.fateChart[acting_rank][defending_rank]
         let critYes = Math.floor(yes/5)
         let critNo = (yes < 100)?100 - Math.floor((100 - yes)/5) + 1 : 0
