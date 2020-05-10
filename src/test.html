@@ -6,8 +6,24 @@
 
 <h1>Test</h1>
 
-<h2>Theme: <span id="acTheme"></span></h2>
+<h2>Adventure Crafter</h2>
+<h3>Theme: <span id="acTheme"></span></h3>
 
+<h3>Character</h3>
+<dl id="characterContainer">
+  <dt id="characterTrait"></dt>
+  <dd id="characterTraitDef"></dd>
+  <dt>Identity</dt>
+  <dd id="characterIdentity"></dd>
+  <dt>Descriptor</dt>
+  <dd id="characterDescriptor"></dd>
+</dl>
+
+<h3>Plotpoints</h3>
+<ol id="plotpoints">
+</ol>
+
+<h2>Mythic</h2>
 <div id="diceResultContainer">Result: <span id="diceResult"></span></div>
 
 <div id="sceneContainer"></div>
@@ -28,6 +44,11 @@
 
 <script defer>
 $acT = document.getElementById("acTheme")
+$acCT = document.getElementById("characterTrait")
+$acCTD = document.getElementById("characterTraitDef")
+$acCD = document.getElementById("characterDescriptor")
+$acCI = document.getElementById("characterIdentity")
+$acPP = document.getElementById("plotpoints")
 
 $dR = document.getElementById("diceResult")
 $sC = document.getElementById("sceneContainer")
@@ -54,13 +75,32 @@ import('./adventure-crafter.js')
     let ac = new AdventureCrafter()
         
     let theme = ac.theme()
-    
     $acT.textContent = `${theme.result} (${theme.dice.total})`
+        
+    let character = ac.generateCharacter()
+    $acCT.textContent = `${character.trait.result}`
+    $acCTD.textContent = `${character.trait.definition}`
+    $acCI.textContent = `${character.identity.identitiesString}`    
+    $acCD.textContent = `${character.descriptor.descriptorsString}`
+    
+    let plotpoints = []
+    plotpoints.push(ac.plotpoint())
+    plotpoints.push(ac.plotpoint())
+    plotpoints.push(ac.plotpoint())
+    plotpoints.push(ac.plotpoint())
+    plotpoints.push(ac.plotpoint())    
+    
+    plotpoints.forEach(function(item) {
+      var li = document.createElement("li");
+      var text = document.createTextNode(`${item.result}: ${item.extras.definition}`);
+      li.appendChild(text);
+      $acPP.appendChild(li);
+    });    
     
   })
   .catch(err => {
-    $dR.textContent = err  
-  });  
+    $acT.textContent = err
+  });
 
 import('./mythic-gme.js')
   .then((module) => {

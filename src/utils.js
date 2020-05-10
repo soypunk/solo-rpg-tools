@@ -2,6 +2,9 @@ export default class Utils {
     constructor() {}
 
     arrayToSentence(arr) {
+    		if(arr.length == 1) {
+    			return arr[0]
+    		}
         let last = arr.pop()
         return arr.join(', ') + ' and ' + last
     }
