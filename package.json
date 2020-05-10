@@ -1,0 +1,8 @@
+{
+  "name": "solo-rpg-tools",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:soypunk/solo-rpg-tools.git",
+  "author": "Shawn Medero <shawn@medero.net>",
+  "license": "MIT"
+}
