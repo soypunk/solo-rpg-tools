@@ -127,7 +127,7 @@ export default class AdventureCrafter {
     	let themes = []
 		while (themes.length < 6) {
 			let newTheme = this.randomBaseTheme()
-			if (!themes.includes(newTheme) {
+			if (!themes.includes(newTheme)) {
 				themes.push(newTheme)
 			} else {
 				continue
