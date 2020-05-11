@@ -150,6 +150,44 @@ export default class AdventureCrafter {
         }
 	}
 	
+	turningPoint() {
+		let numPlotlines = this.plotlinesList.length
+		let plotline = null
+		let type = "new"
+		let plotpoints = []
+		
+		if (numPlotlines > 0) {
+			tempPlotlinesList = this.plotlinesList
+			tempPlotlinesList.concat(this.basePlotlinesTable.slice(numPlotlines))
+			plotline = tempPlotlinesList[Math.floor(Math.random() * tempPlotlinesList.length)]
+			if (plotline != "new") {
+				type = "advancement"
+			}
+		} else {
+			plotline = "new"
+		}
+		
+		let nones = 0
+		while (plotpoints.length < 5) {
+			let newPlotpoint = plotpoint()
+			if (nones < 3) {
+				plotpoints.push(newPlotpoint)
+			} else {
+				if (newPlotpoint.result == "None") {
+					continue
+				} else {
+					plotpoints.push(newPlotpoint)
+				}
+			}			
+		}	
+		
+		return {
+			"plotline": plotline,
+			"type": type,
+			"plotpoints": plotpoints
+		}
+	}
+	
 	characterDescriptor(num=null) {
 		let descriptorsTable = ["Ugly","Beautiful","Foul","Sweet","Unusual","Common","Intelligent","Ignorant","Educated","Skilled","Trained","Rude","Polite","Fancy","Simple","Dirty","Clean","Wealthy","Poor","Small","Large","Quiet","Loud","Fast","Slow","Exotic","Uniformed","Interesting","Colorful","Informative","Dangerous","Inept","Clumsy","Capable","Intrusive","Respectful","Primitive","Sophisticated","Elegant","Armed","Different","Young","Old","Difficult","Helpful","Harmful","Disciplined","Erratic","Wild","Crazy","Commanding","Meek","Humorous","Frightened","Brave","Strong","Weak","Impulsive","Strategic","Naive","Confident","Surprising","Passive","Bold",
 "Careless","Cautious","Sneaky","Intimidating","Powerful","Powerless","Hurt","Rough","Gentle","Caring","Principled","Arrogant","Curious","Supportive","Heroic"]

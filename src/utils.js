@@ -2,9 +2,6 @@ export default class Utils {
     constructor() {}
 
     arrayToSentence(arr) {
-    		if(arr.length == 1) {
-    			return arr[0]
-    		}
         let last = arr.pop()
         return arr.join(', ') + ' and ' + last
     }
@@ -17,30 +14,8 @@ export default class Utils {
 		return Math.min(Math.max(num, min), max)
 	}
 	
-	rollDie(sides=6, correct_roll=true) {
-		let roll = Math.floor(Math.random() * sides)
-		if (correct_roll) {
-			return ++roll
-		} else { 
-			return roll
-		}
-	}
-	
-	rollDice(num=1, sides=6, correct_rolls=true){
-		var total = 0
-		var diceRolls = []
-		var numRolled = num
-		while (num-- > 0) {
-			let dieRoll = this.rollDie(sides, correct_rolls)
-			total += dieRoll
-			diceRolls.push(dieRoll)
-		}
-		return {
-			'numSides': sides, 
-			'numRolled': numRolled,
-			'diceRolls': diceRolls,
-			'total': total
-		}
+	d100(){
+		return Math.floor(Math.random()*100);
 	}	 
     
     getRandom(arr, n=1) {
@@ -73,16 +48,13 @@ export default class Utils {
         return +keys[i - 1]
     }
     
-    getClosetRolledMatch(arr,roll) {
-        let result = null        
-        for (var i = 0; i < arr.length; i++){
-            if (roll <= arr[i][0]) {
-                result = arr[i][1];
-                break;
-            }
-        }
-        return result
-    }
+	getAllIndexes(arr, val) {
+		var indexes = [], i;
+		for(i = 0; i < arr.length; i++)
+			if (arr[i] === val)
+				indexes.push(i);
+		return indexes;
+	}    
     
 	getKeyByValue(object, value) {
 		return Object.keys(object).find(key => object[key] === value)
@@ -94,29 +66,5 @@ export default class Utils {
 	
     numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-    }
-    
-	areArraysEqualSets(a1, a2) {
-	  let superSet = {};
-	  for (let i = 0; i < a1.length; i++) {
-	    const e = a1[i] + typeof a1[i];
-	    superSet[e] = 1;
-	  }
-
-	  for (let i = 0; i < a2.length; i++) {
-	    const e = a2[i] + typeof a2[i];
-	    if (!superSet[e]) {
-	      return false;
-	    }
-	    superSet[e] = 2;
-	  }
-
-	  for (let e in superSet) {
-	    if (superSet[e] === 1) {
-	      return false;
-	    }
-	  }
-
-	  return true;
-	}    
+    }	
 }
