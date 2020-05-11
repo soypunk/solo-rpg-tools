@@ -54,11 +54,35 @@ export default class Utils {
 			if (arr[i] === val)
 				indexes.push(i);
 		return indexes;
-	}    
+	}
     
 	getKeyByValue(object, value) {
 		return Object.keys(object).find(key => object[key] === value)
 	}
+	
+	areArraysEqualSets(a1, a2) {
+	  let superSet = {};
+	  for (let i = 0; i < a1.length; i++) {
+	    const e = a1[i] + typeof a1[i];
+	    superSet[e] = 1;
+	  }
+
+	  for (let i = 0; i < a2.length; i++) {
+	    const e = a2[i] + typeof a2[i];
+	    if (!superSet[e]) {
+	      return false;
+	    }
+	    superSet[e] = 2;
+	  }
+
+	  for (let e in superSet) {
+	    if (superSet[e] === 1) {
+	      return false;
+	    }
+	  }
+
+	  return true;
+	}	
 	
 	isObject(val) {
     	    return val != null && typeof val === 'object' && Array.isArray(val) === false
