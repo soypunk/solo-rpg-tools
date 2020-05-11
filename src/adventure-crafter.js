@@ -55,7 +55,7 @@ export default class AdventureCrafter {
             this._themes = themes
             this.initThemesTable()
         } else {
-            throw "Your theme array contains an invalid set of Adventure Crafter themes. Custom themes are not supported."
+            throw `Your theme array contains an invalid set of Adventure Crafter themes. Custom themes are not supported: ${themes.join(",")}`
         }
     }    
     
