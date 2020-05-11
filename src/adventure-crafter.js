@@ -49,7 +49,7 @@ export default class AdventureCrafter {
     }    
     
     set themes(themes) {
-        let isProperThemeArray = areArraysEqualSets(themes,this.baseThemes)
+        let isProperThemeArray = utils.areArraysEqualSets(themes,this.baseThemes)
         
         if(isProperThemeArray) {
             this._themes = themes
