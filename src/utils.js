@@ -1,4 +1,4 @@
-export default class Utils {
+class Utils {
     constructor() {}
 
     arrayToSentence(arr) {
@@ -90,5 +90,33 @@ export default class Utils {
 	
     numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-    }	
+    }
+    
+    rollDie(sides=6, correct_roll=true) {
+		let roll = Math.floor(Math.random() * sides)
+		if (correct_roll) {
+			return ++roll
+		} else { 
+			return roll
+		}
+	}
+	
+	rollDice(num=1, sides=6, correct_rolls=true){
+		var total = 0
+		var diceRolls = []
+		var numRolled = num
+		while (num-- > 0) {
+			let dieRoll = this.rollDie(sides, correct_rolls)
+			total += dieRoll
+			diceRolls.push(dieRoll)
+		}
+		return {
+			'numSides': sides, 
+			'numRolled': numRolled,
+			'diceRolls': diceRolls,
+			'total': total
+		}
+	}
 }
+
+export default Utils
