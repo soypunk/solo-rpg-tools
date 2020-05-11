@@ -60,6 +60,17 @@ class Utils {
 		return Object.keys(object).find(key => object[key] === value)
 	}
 	
+	getClosetRolledMatch(arr,roll) {
+        let result = null        
+        for (var i = 0; i < arr.length; i++){
+            if (roll <= arr[i][0]) {
+                result = arr[i][1];
+                break;
+            }
+        }
+        return result
+    }	
+	
 	areArraysEqualSets(a1, a2) {
 	  let superSet = {};
 	  for (let i = 0; i < a1.length; i++) {
