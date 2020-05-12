@@ -88,6 +88,9 @@ import('./adventure-crafter.js')
         
     let theme = ac.theme()
     $acT.textContent = `${theme.result} (${theme.dice.total})`
+    
+    let randomThemes = ac.buildThemesRandomly()
+    console.log(randomThemes.themes)
         
     let character = ac.generateCharacter()
     $acCT.textContent = `${character.trait.result}`

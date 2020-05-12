@@ -126,16 +126,16 @@ export default class AdventureCrafter {
     }
     
     buildThemesRandomly() {
-    		let themes = []
-		while (themes.length < 6) {
+    		let tempThemes = []
+    		
+    		do {
 			let newTheme = this.randomBaseTheme()
-			if (!themes.includes(newTheme)) {
-				themes.push(newTheme)
-			} else {
-				continue
+			if (!tempThemes.includes(newTheme)) {
+				tempThemes.push(newTheme)
 			}
-		}
-		this.themes = themes
+		} while (tempThemes.length < 5);
+		
+		this.themes = tempThemes
 		return {
 			"themes": this.themes,
 			"themesTable": this.themesTable
