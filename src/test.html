@@ -9,6 +9,19 @@
 <h2>Adventure Crafter</h2>
 <h3>Theme: <span id="acTheme"></span></h3>
 
+<h3>Turning Point</h3>
+<dl id="turningPoint">
+  <dt>Type:</dt>
+  <dd id="turningPointType"></dd>
+  <dt>Plotline:</dt>
+  <dd id="turningPointPlotline"></dd>
+  <dt>Plotpoints:</dt>
+  <dd>
+    <ol id="turningPointPlotpoints">
+    </ol>
+  </dd>  
+</dl>
+
 <h3>Character</h3>
 <dl id="characterContainer">
   <dt id="characterTrait"></dt>
@@ -18,10 +31,6 @@
   <dt>Descriptor</dt>
   <dd id="characterDescriptor"></dd>
 </dl>
-
-<h3>Plotpoints</h3>
-<ol id="plotpoints">
-</ol>
 
 <h2>Mythic</h2>
 <div id="diceResultContainer">Result: <span id="diceResult"></span></div>
@@ -48,7 +57,10 @@ $acCT = document.getElementById("characterTrait")
 $acCTD = document.getElementById("characterTraitDef")
 $acCD = document.getElementById("characterDescriptor")
 $acCI = document.getElementById("characterIdentity")
-$acPP = document.getElementById("plotpoints")
+
+$acTPT = document.getElementById("turningPointType")
+$acTPPL = document.getElementById("turningPointPlotline")
+$acTPPP = document.getElementById("turningPointPlotpoints")
 
 $dR = document.getElementById("diceResult")
 $sC = document.getElementById("sceneContainer")
@@ -83,18 +95,18 @@ import('./adventure-crafter.js')
     $acCI.textContent = `${character.identity.identitiesString}`    
     $acCD.textContent = `${character.descriptor.descriptorsString}`
     
-    let plotpoints = []
-    plotpoints.push(ac.plotpoint())
-    plotpoints.push(ac.plotpoint())
-    plotpoints.push(ac.plotpoint())
-    plotpoints.push(ac.plotpoint())
-    plotpoints.push(ac.plotpoint())    
+    let turningPoint = ac.turningPoint()
+    
+    $acTPT.textContent = turningPoint.type
+    $acTPPL.textContent = turningPoint.plotline
+    
+    let plotpoints = turningPoint.plotpoints
     
     plotpoints.forEach(function(item) {
       var li = document.createElement("li");
       var text = document.createTextNode(`${item.result}: ${item.extras.definition}`);
       li.appendChild(text);
-      $acPP.appendChild(li);
+      $acTPPP.appendChild(li);
     });    
     
   })

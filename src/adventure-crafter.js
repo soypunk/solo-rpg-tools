@@ -49,7 +49,9 @@ export default class AdventureCrafter {
     }    
     
     set themes(themes) {
-        let isProperThemeArray = utils.areArraysEqualSets(themes,this.baseThemes)
+        let isProperThemeArray = true
+        // need to think about how to handle this given the whole 4/5 thing:
+        // utils.areArraysEqualSets(themes,this.baseThemes)
         
         if(isProperThemeArray) {
             this._themes = themes
@@ -88,14 +90,14 @@ export default class AdventureCrafter {
     }
     
     plotlineFromList() {    	
-    	let plotlineIndex = Math.floor(Math.random() * this.basePlotlinesTable.length)    	
-    	let plotlineItem = this.basePlotlinesTable[plotlineIndex]
-    	let result = null
-    	if (plotlineItem == "new") {
+    		let plotlineIndex = Math.floor(Math.random() * this.basePlotlinesTable.length)    	
+	    	let plotlineItem = this.basePlotlinesTable[plotlineIndex]
+    		let result = null
+    		if (plotlineItem == "new") {
 			result = "new"
-    	} else { //logical
-    		result = this.plotlinesListList
-    	}
+	    	} else { //logical
+    			result = this.plotlinesListList
+    		}
 		return {
 			"result": plotlineItem,
 			"plotline": result,
@@ -104,14 +106,14 @@ export default class AdventureCrafter {
     }
     
     characterFromList() {
-    	let characterIndex = Math.floor(Math.random() * this.baseCharactersTable.length)    	
-    	let characterItem = this.baseCharactersTable[characterIndex]
-    	let result = null
-    	if (characterItem == "new") {
+    		let characterIndex = Math.floor(Math.random() * this.baseCharactersTable.length)    	
+    		let characterItem = this.baseCharactersTable[characterIndex]
+    		let result = null
+    		if (characterItem == "new") {
 			result = this.generateCharacter()
-    	} else { //logical
-    		result = this.charactersList
-    	}
+    		} else { //logical
+    			result = this.charactersList
+    		}
 		return {
 			"result": characterItem,
 			"character": result,
@@ -120,11 +122,11 @@ export default class AdventureCrafter {
     }
     
     randomBaseTheme() {
-    	return this.baseThemes[Math.floor(Math.random() * this.baseThemes.length)]
+    		return this.baseThemes[Math.floor(Math.random() * this.baseThemes.length)]
     }
     
     buildThemesRandomly() {
-    	let themes = []
+    		let themes = []
 		while (themes.length < 6) {
 			let newTheme = this.randomBaseTheme()
 			if (!themes.includes(newTheme)) {
@@ -143,6 +145,12 @@ export default class AdventureCrafter {
 	theme() {
 		let diceResult = utils.rollDice(1,10)
         let result = utils.getClosetRolledMatch(this.themesTable,diceResult.total)
+        
+        if (result.includes("/")) { 
+        		// 4/5 thing. theoritically these alternate use but... ¯\_(ツ)_/¯
+        		result = result.split("/")
+        		result = result[Math.floor(Math.random() * result.length)]
+        }
         
         return {
             "result": result,
@@ -164,7 +172,7 @@ export default class AdventureCrafter {
 			tempPlotlinesList.concat(this.basePlotlinesTable.slice(numPlotlines))
 			plotline = tempPlotlinesList[Math.floor(Math.random() * tempPlotlinesList.length)]
 			if (plotline != "new") {
-				type = "advancement"
+				type = "development"
 			}
 		} else {
 			plotline = "new"
@@ -172,11 +180,25 @@ export default class AdventureCrafter {
 		
 		let nones = 0
 		while (plotpoints.length < 5) {
-			let newPlotpoint = plotpoint()
+			let newPlotpoint = this.plotpoint(this.theme().result)
+			if (newPlotpoint.result == "Conclusion") {
+				if (type == "new") {
+					newPlotpoint = {
+						"result": "None",
+						"extras": {
+							"definition": "Leave this Plot Point blank and go on to the next Plot Point, unless it would leave you with fewer than 2 Plot Points in this Turning Point, in which case re-roll."
+						}
+					}
+				} else {
+					type = "conclusion"
+				}
+			}
+			// no more than three None 
 			if (nones < 3) {
 				plotpoints.push(newPlotpoint)
+				++nones
 			} else {
-				if (newPlotpoint.result == "None") {
+				if (newPlotpoint.result == "None") {					
 					continue
 				} else {
 					plotpoints.push(newPlotpoint)
@@ -788,7 +810,7 @@ export default class AdventureCrafter {
 		}
 		*/
 		return {
-			'result': plotpoint,		
+			'result': plotpoint,	
 			"dice": {
 				"total": rolls.total,
 			},
