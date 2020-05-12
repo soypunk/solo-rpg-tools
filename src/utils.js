@@ -2,8 +2,12 @@ class Utils {
     constructor() {}
 
     arrayToSentence(arr) {
-        let last = arr.pop()
-        return arr.join(', ') + ' and ' + last
+    		if (arr.length == 1) {
+    			return arr[0]
+    		} else {
+	        let last = arr.pop()
+    	    		return arr.join(', ') + ' and ' + last
+    	    	}
     }
     
 	capitalize(stringToCap) {
