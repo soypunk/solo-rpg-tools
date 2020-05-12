@@ -89,25 +89,33 @@ export default class AdventureCrafter {
     	this._charactersList = list
     }
     
-    plotlineFromList() {    	
-    		let plotlineIndex = Math.floor(Math.random() * this.basePlotlinesTable.length)    	
-	    	let plotlineItem = this.basePlotlinesTable[plotlineIndex]
+    plotlineFromList() {
+    		let numPlotlines = this.plotlinesList.length
+		let tempPlotlinesList = this.plotlinesList
+		tempPlotlinesList = tempPlotlinesList.concat(this.basePlotlinesTable.slice(numPlotlines))
+		        
+    		let plotlineIndex = Math.floor(Math.random() * tempPlotlinesList.length)    	
+	    	let plotlineItem = tempPlotlinesList[plotlineIndex]
     		let result = null
     		if (plotlineItem == "new") {
 			result = "new"
 	    	} else { //logical
-    			result = this.plotlinesListList
+    			result = this.plotlinesList
     		}
 		return {
 			"result": plotlineItem,
 			"plotline": result,
-			"plotline_index": plotlineIndex
+			"plotlineIndexNum": plotlineIndex
 		}
     }
     
     characterFromList() {
-    		let characterIndex = Math.floor(Math.random() * this.baseCharactersTable.length)    	
-    		let characterItem = this.baseCharactersTable[characterIndex]
+    		let numCharacters = this.charactersList.length
+    		let tempCharactersList = this.charactersList
+    		tempCharactersList = tempCharactersList.concat(this.baseCharactersTable.slice(numCharacters))
+    		
+    		let characterIndex = Math.floor(Math.random() * tempCharactersList.length)    	
+    		let characterItem = tempCharactersList[characterIndex]
     		let result = null
     		if (characterItem == "new") {
 			result = this.generateCharacter()
@@ -168,9 +176,9 @@ export default class AdventureCrafter {
 		let plotpoints = []
 		
 		if (numPlotlines > 0) {
-			let tempPlotlinesList = this.plotlinesList
-			tempPlotlinesList = tempPlotlinesList.concat(this.basePlotlinesTable.slice(numPlotlines))
-			plotline = tempPlotlinesList[Math.floor(Math.random() * tempPlotlinesList.length)]
+			let rolledPlotline = this.plotlineFromList()
+			plotline = rolledPlotline.result
+			
 			if (plotline != "new") {
 				type = "development"
 			}
