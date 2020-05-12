@@ -168,7 +168,7 @@ export default class AdventureCrafter {
 		let plotpoints = []
 		
 		if (numPlotlines > 0) {
-			tempPlotlinesList = this.plotlinesList
+			let tempPlotlinesList = this.plotlinesList
 			tempPlotlinesList.concat(this.basePlotlinesTable.slice(numPlotlines))
 			plotline = tempPlotlinesList[Math.floor(Math.random() * tempPlotlinesList.length)]
 			if (plotline != "new") {
