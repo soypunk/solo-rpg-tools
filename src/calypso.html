@@ -16,11 +16,13 @@
 
 <table id="harmIdeas" style="display:none">
 	<tr>
+		<th>General</th>
 		<th>Lesser</th>
 		<th>Greater</th>
 		<th>Complication</th>
 	</tr>
 	<tr>
+		<td id="harmGeneral"></td>
 		<td id="harmLesser"></td>
 		<td id="harmGreater"></td>
 		<td id="harmComplication"></td>
@@ -40,6 +42,7 @@ const $oM = document.getElementById("oracleMove")
 
 const $hI = document.getElementById("harmIdeas")
 const $hIL = document.getElementById("harmLesser")
+const $hIOG = document.getElementById("harmGeneral")
 const $hIG = document.getElementById("harmGreater")
 const $hIC = document.getElementById("harmComplication")
 
@@ -59,10 +62,12 @@ import('./calypso.js')
     if (c_sM.dice.total < 10) {
     	let c_hIL = C.lesser_danger()
     	let c_hIG = C.greater_danger()
+    	let c_hIOG = C.general_danger()
     	let c_hIC = C.complication()
     	
     	$hI.setAttribute("style","display:table;")
     	$hIL.textContent = `${c_hIL.result}`
+    	$hIOG.textContent = `${c_hIOG.result}`
     	$hIG.textContent = `${c_hIG.result}`
     	$hIC.textContent = `${c_hIC.result}`
     }

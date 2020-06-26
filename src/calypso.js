@@ -120,7 +120,7 @@ export default class Calypso {
 			"Control slips a little.",
 			"Something that’s just physical happens between you.",
 			"Someone reveals something you wish they hadn’t.",
-			"One of your worst qualities hin‐ ders you.",
+			"One of your worst qualities hinders you.",
 			"They harm you a little."
 		]
 		return utils.table_random_lookup(table)
@@ -136,6 +136,18 @@ export default class Calypso {
 			"They harm you badly."
 		]
 		return utils.table_random_lookup(table)	
+	}
+	
+	general_danger() {
+		let table = [
+			"An enemy strikes without mercy.",
+			"An environmental hazard poses a threat.",
+			"A natural threat presents.",
+			"An ally is in danger.",
+			"Someone calls for help.",
+			"The environment betrays the protagonist"
+		]
+		return utils.table_random_lookup(table)		
 	}	
 	
 	oracle(modifier=0) {
