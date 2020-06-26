@@ -3,6 +3,13 @@ import Utils from './utils.js'
 const utils = new Utils()
 
 export default class Calypso {
+	/*
+	The Calypso Compendium
+	
+	This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC-BY-NC-SA).
+	
+	URL: https://exposit.github.io/katarpgs/lite/calypsocompendium/
+	*/
 	constructor(){
 		this._oddsLabels=[
             "Very unlikely", 
