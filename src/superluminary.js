@@ -492,7 +492,47 @@ export default class Superluminary {
 		return this._d100_lookup(table)
 	}
 	
-	world_planet_type(){}
+	world_planet_type(){
+		let table = [
+			"Agricultural world",
+			"Blasted world",
+			"Capital world",
+			"City world",
+			"Corporate world",
+			"Cultured world",
+			"Desert world",
+			"Feudal world",
+			"Gas giant",
+			"Ice world",
+			"Industrial world",
+			"Jungle world",
+			"Junk world",
+			"Militarised world",
+			"Mining colony",
+			"Occupied world",
+			"Ocean world",
+			"Prison world",
+			"Savage world",
+			"Research colony or space station",
+			"Swamp world",
+			"Technoid world",
+			"Theocratic world",
+			"Trading world",
+			"Volcanic world",
+			"Wild west world",
+			"Barren and lifeless rock – totally inhospitable",
+			"Hot gas giant – totally inhospitable",
+			"Toxic ocean world – totally inhospitable"
+		]
+		
+		let roll = utils.rollDice(1, 100)
+		
+		if (roll.total == 100) {
+			return this._random_lookup(table, 2)
+		} else {
+			return this._random_lookup(table)
+		}			
+	}
 	
 	world_primary_inhabitants(){}
 	
@@ -548,7 +588,7 @@ export default class Superluminary {
 			"Unreliable Autopilot",
 			"Unstable Power Source",
 			"Vulnerable Exhaust Port	"
-		]
+		]			
 		
 		return this._random_lookup(table)
 	}

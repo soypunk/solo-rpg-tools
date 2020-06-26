@@ -24,6 +24,8 @@
   <dd id="superluminaryWarMachine"></dd>
   <dt>Weapon</dt>
   <dd id="superluminaryWeapon"></dd>
+  <dt>World Type</dt>
+  <dd id="superluminaryWorldPlanetType"></dd>
 </dl>
 
 <h2>Adventure Crafter</h2>
@@ -95,6 +97,7 @@ $slPF = document.getElementById("superluminaryPredatorFlaw")
 $slPSA = document.getElementById("superluminaryPredatorSpecialAbilities")
 $slWM = document.getElementById("superluminaryWarMachine")
 $slW = document.getElementById("superluminaryWeapon")
+$slWPT = document.getElementById("superluminaryWorldPlanetType")
 /*
 import('./utils.js')
   .then((module) => {
@@ -122,6 +125,7 @@ import('./superluminary.js')
     let slPSA = SL.predator_special_abilities()
     let slWM = SL.war_machine_trait()
     let slW = SL.weapon()
+    let slWPT = SL.world_planet_type()
     
     $slC.textContent = `${slC.result}`
     $slCE.textContent = `${slCE.result}`    
@@ -131,9 +135,10 @@ import('./superluminary.js')
     $slPSA.textContent = `${slPSA.result}`
     $slWM.textContent = `${slWM.result}`
     $slW.textContent = `${slW.result}`
+    $slWPT.textContent = `${slWPT.result}`
   })
   .catch(err => {
-    $slPD.textContent = err
+    $slC.textContent = err
   });  
 
 import('./adventure-crafter.js')
