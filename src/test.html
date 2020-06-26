@@ -6,6 +6,12 @@
 
 <h1>Test</h1>
 
+<h2>Random Tables</h2>
+<dl>
+  <dt>Pocket Dimensions</dt>
+  <dd id="superluminaryPocketD"></dd>
+</dl>
+
 <h2>Adventure Crafter</h2>
 <h3>Theme: <span id="acTheme"></span></h3>
 
@@ -81,6 +87,20 @@ import('./utils.js')
   });
 */
 
+import('./superluminary.js')
+  .then((module) => {
+    const Superluminary = module.default
+    let SL = new Superluminary()
+    $slPD = document.getElementById("superluminaryPocketD")
+    
+    let slPD = SL.pocket_dimension()
+    
+    $slPD.textContent = `${slPD.result}`
+  })
+  .catch(err => {
+    $slPD.textContent = err
+  });  
+
 import('./adventure-crafter.js')
   .then((module) => {
     const AdventureCrafter = module.default
@@ -98,7 +118,7 @@ import('./adventure-crafter.js')
     $acCI.textContent = `${character.identity.identitiesString}`    
     $acCD.textContent = `${character.descriptor.descriptorsString}`
     
-    ac.plotlinesList = ['the thing']
+    ac.plotlinesList = []
     let turningPoint = ac.turningPoint()
     
     $acTPT.textContent = turningPoint.type
