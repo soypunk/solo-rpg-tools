@@ -11,11 +11,19 @@
 <h2>Dramatic Move</h2>
 <p id="dramaticMove"></p>
 
+<h2>Strive Move</h2>
+<p id="striveMove"></p>
+
+<h2>Oracle Move</h2>
+<p id="oracleMove"></p>
+
 </main>
 
 <script defer>
-$eM = document.getElementById("errorMessage")
-$dM = document.getElementById("dramaticMove")
+const $eM = document.getElementById("errorMessage")
+const $dM = document.getElementById("dramaticMove")
+const $sM = document.getElementById("striveMove")
+const $oM = document.getElementById("oracleMove")
 
 import('./calypso.js')
   .then((module) => {
@@ -23,8 +31,14 @@ import('./calypso.js')
     let C = new Calypso()
     
     let c_dM = C.dramatic_move()
+    let c_sM = C.strive()
+    let c_oM = C.oracle()
     
-    $dM.textContent = `${c_dM.dice.rolls.diceRolls[0]},${c_dM.dice.rolls.diceRolls[1]}: ${c_dM.result}`
+    $dM.textContent = `${c_dM.dice.rolls[0]},${c_dM.dice.rolls[1]}: ${c_dM.result}`
+    
+    $sM.textContent = `${c_sM.dice.total} (${c_sM.dice.rolls[0]},${c_sM.dice.rolls[1]}, mod: ${c_sM.modifier}): ${c_sM.result}`
+    
+    $oM.textContent = `${c_oM.dice.total} (${c_oM.dice.rolls[0]},${c_oM.dice.rolls[1]}, mod: ${c_oM.modifier}): ${c_oM.result}`
   })
   .catch(err => {
     $eM.textContent = err

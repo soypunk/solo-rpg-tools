@@ -4,7 +4,33 @@ const utils = new Utils()
 
 export default class Calypso {
 	constructor(){
+		this._oddsLabels=[
+            "Very unlikely", 
+            "Unlikely",
+            "Somewhat unlikely",
+            "50/50",
+            "Somewhat likely",
+            "Likely", 
+            "Very likely"
+		]
+		this._oddsModifiers=[
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3
+		]
 	}
+	
+    get oracleOddsLabels() {
+        return this._oddsLabels;
+    }
+    
+    get oracleOddsModifer() {
+        return this._oddsModifiers;
+    }    
 	
 	dramatic_move() {
 		let table1 = [
@@ -38,10 +64,73 @@ export default class Calypso {
 		
 		return {
 			"dice": {
-				"rolls": table_roll,
+				"rolls": table_roll.diceRolls,
 				"total": table_roll.total
 			},
-			result: result
+			"result": result
+		}
+	}
+	
+	strive(modifier=0) {
+		if (modifier > 4) { modifier = 4 } // page 6 "building a modifier"
+		let roll = utils.rollDice(2, 6)	
+		let total = roll.total + modifier
+		let result = ""
+	
+		if (total >= 10) {
+			result = "You succeed at the goal and avoid the risk. Choose one that fits: gain 1d6/2 Currency, gain a +2 bonus on the next Strive roll, or lose, change, or gain a Condition."
+		} else if (total >=7 && total <=9) {
+			result = "You succeed at the goal or avoid the risk, your choice. If you choose success, deliver the risk by following up on a previous soft Move with the consequences or playing a new hard Move. Otherwise, introduce a new soft Move that makes achieving the goal harder."
+		} else {
+			result = "You fail at the goal and the risk hits you. Deliver on the risk’s threat with the consequences of a previous soft Move or deliver a new hard Move, then introduce a new soft Move that makes achieving the goal impossible in the short term. Earn one Currency."
+		}
+			
+		return {
+			"dice": {
+				"rolls": roll.diceRolls,
+				"total": total
+			},
+			"modifier": modifier,
+			"result": result
+		}
+	}
+	
+	oracle(modifier=0) {
+	
+		let roll = utils.rollDice(2, 6)	
+		let total = roll.total + modifier
+		let result = ""
+	
+		if (total >= 10) {
+			result = "Yes!"
+		} else if (total >=7 && total <=9) {
+			result = "Yes"
+			if (roll.diceRolls[0] > roll.diceRolls[1]) {
+				result = `${result}, and.`
+			} else {
+				result = `${result}, but.`			
+			}
+		} else {
+			result = "No"
+			if (roll.diceRolls[0] > roll.diceRolls[1]) {
+				result = `${result}, and.`
+			} else {
+				result = `${result}, but.`			
+			}
+		}
+	
+		if (roll.diceRolls[0] == roll.diceRolls[1]) {
+			let dramatic_move = this.dramatic_move()
+			result = `${result} Scene Interrupt: ${dramatic_move.result}`
+		}
+	
+		return {
+			"dice": {
+				"rolls": roll.diceRolls,
+				"total": total
+			},
+			"modifier": modifier,
+			"result": result
 		}
 	}
 	
