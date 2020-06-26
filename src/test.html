@@ -10,8 +10,12 @@
 <dl>
   <dt>Cargo</dt>
   <dd id="superluminaryCargo"></dd>
-  <dt>Pocket Dimensions</dt>
-  <dd id="superluminaryPocketD"></dd>
+  <dt>NPC Personality Trait</dt>
+  <dd id="superluminaryNPCPersonalityTrait"></dd>
+  <dt>Pocket Dimension</dt>
+  <dd id="superluminaryPocketDimension"></dd>
+  <dt>War Machine</dt>
+  <dd id="superluminaryWarMachine"></dd>
   <dt>Weapon</dt>
   <dd id="superluminaryWeapon"></dd>
 </dl>
@@ -78,7 +82,9 @@ $dC = document.getElementById("detailContainer")
 $stC = document.getElementById("statContainer")
 
 $slC = document.getElementById("superluminaryCargo")
-$slPD = document.getElementById("superluminaryPocketD")
+$slNPC = document.getElementById("superluminaryNPCPersonalityTrait")
+$slPD = document.getElementById("superluminaryPocketDimension")
+$slWM = document.getElementById("superluminaryWarMachine")
 $slW = document.getElementById("superluminaryWeapon")
 /*
 import('./utils.js')
@@ -100,11 +106,15 @@ import('./superluminary.js')
     let SL = new Superluminary()
     
     let slC = SL.cargo()
+    let slNPC = SL.npc_personality_trait()
     let slPD = SL.pocket_dimension()
-    let slW = SL.weapon()
+    let slWM = SL.war_machine_trait()
+    let slW = SL.weapon()    
     
     $slC.textContent = `${slC.result}`
+    $slNPC.textContent = `${slNPC.result}`
     $slPD.textContent = `${slPD.result}`
+    $slWM.textContent = `${slWM.result}`
     $slW.textContent = `${slW.result}`
   })
   .catch(err => {

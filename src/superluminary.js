@@ -6,6 +6,18 @@ export default class Superluminary {
 	constructor(){
 	}
 
+	_random_lookup(table, number_of_results=1) {
+		let result = utils.getRandom(table, number_of_results)
+		if (number_of_results == 1) {
+			result = result[0]
+		}
+		return {
+			"roll": null,
+			"result": result,
+			"table": table
+		}
+	}
+
 	_d10_lookup(table){
 		let roll = utils.rollDice(1, 10)
 		return {
@@ -44,7 +56,113 @@ export default class Superluminary {
 		
 	}
 
-	npc_personality_trait(){}
+	npc_personality_trait(){
+		let table = [
+			"Addicted to Spice",
+			"Always Betray Rebel Scum",
+			"Ambitious",
+			"Argumentative",
+			"Arrogant",
+			"At One with the Universe",
+			"Bad Loser",
+			"Barbaric",
+			"Bitter",
+			"Blunt",
+			"Brave",
+			"Cautious",
+			"Civilised",
+			"Cold",
+			"Competitive",
+			"Confident",
+			"Conformist",
+			"Cowardly",
+			"Creative",
+			"Cruel",
+			"Curious",
+			"Cynical",
+			"Dependent on Technology",
+			"Desperate",
+			"Determined",
+			"Diplomatic",
+			"Disorganised",
+			"Distrusts Telepaths",
+			"Driven",
+			"Easy-Going",
+			"Efficient",
+			"End Justifies the Means",
+			"Fanatical",
+			"Fascinated by the Exotic",
+			"Forgiving",
+			"Friendly",
+			"Generous",
+			"Gentle",
+			"Greedy",
+			"Grouchy",
+			"Hardened",
+			"Hates Robots",
+			"Honest",
+			"Hot Tempered",
+			"Idealistic",
+			"Ignorant",
+			"Impatient",
+			"Impulsive",
+			"Inscrutable",
+			"Intellectual",
+			"Lazy",
+			"Liar",
+			"Loyal",
+			"Mischievous",
+			"Modest",
+			"Naive",
+			"Nervous",
+			"Noble",
+			"No Love for the Empire",
+			"Optimist",
+			"Overanalytical",
+			"Pacifist",
+			"Paranoid",
+			"Perceptive",
+			"Perfectionist",
+			"Pessimist",
+			"Philosophical",
+			"Practical",
+			"Prefers Robots to Humans",
+			"Principled",
+			"Proud",
+			"Progressive",
+			"Rationalist",
+			"Rebel",
+			"Reckless",
+			"Sarcastic",
+			"Secret Imperial Collaborator",
+			"Seen a Lot of Strange Stuff",
+			"Selfish",
+			"Sensitive",
+			"Serious",
+			"Sheltered Upbringing",
+			"Shy",
+			"Slapdash",
+			"Stubborn",
+			"Superstitious",
+			"Suspicious",
+			"Talkative",
+			"Technophobic",
+			"Traditionalist",
+			"Treacherous",
+			"Trusting",
+			"Uncertain",
+			"Unflappable",
+			"Unpredictable",
+			"Unprincipled",
+			"Vengeful",
+			"Warlike",
+			"Weak",
+			"Willed",
+			"Xenophobic"
+		]
+		
+		return this._random_lookup(table)
+	}
 	
 	cargo(){
 		let table = {
@@ -264,7 +382,62 @@ export default class Superluminary {
 	
 	world_primary_inhabitants(){}
 	
-	war_machine_trait(){}
+	war_machine_trait(){
+		let table = [
+			"Alternate Movement Mode",
+			"Anti-Air Missiles",
+			"Armour Is Too Strong for Blasters",
+			"Assault Ramp",
+			"Bioweapon Spray",
+			"Blind Spot at Rear",
+			"Boneshaker",
+			"Bristling with Weapons",
+			"Broadcast Array",
+			"Camouflaged",
+			"Cargo-Gripping Claws",
+			"Cloaking Field",
+			"Covered in Spikes",
+			"Defence Batteries",
+			"Detachable Spy Drone",
+			"Dozer Blade",
+			"Drag Chutes",
+			"EMP Field",
+			"Escape Pod",
+			"False Markings",
+			"Fuel Guzzler",
+			"Impossibly Sleek",
+			"Incredibly Loud Engine",
+			"Invisibility Field Activates When Stationary",
+			"Kirby Dot Energy Field",
+			"Looks Like a Mythological Creature",
+			"Main Gun Needs to Recharge",
+			"Melee Attack Mode",
+			"Mine Layer",
+			"Multisensor",
+			"Obsolete Model",
+			"Onboard AI",
+			"Outrageous Spoiler",
+			"Piloted Remotely",
+			"Pop-Up Flamethrowers",
+			"Prominent Oversized Engine",
+			"Rear-Firing Laser",
+			"Rocket Thrusters",
+			"Roll Cage",
+			"Signal Jammer",
+			"Smaller Vehicle Emerges from the Wreckage When Destroyed",
+			"Smoke Launchers",
+			"Spews Noxious Fumes",
+			"Stealth Mode",
+			"Stripped-Down Armour",
+			"Transforms into Different Type of Vehicle",
+			"Turbo Boosters",
+			"Unreliable Autopilot",
+			"Unstable Power Source",
+			"Vulnerable Exhaust Port	"
+		]
+		
+		return this._random_lookup(table)
+	}
 
 	special_abilities(){}
 
