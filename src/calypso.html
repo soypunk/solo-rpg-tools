@@ -14,6 +14,19 @@
 <h2>Strive Move</h2>
 <p id="striveMove"></p>
 
+<table id="harmIdeas" style="display:none">
+	<tr>
+		<th>Lesser</th>
+		<th>Greater</th>
+		<th>Complication</th>
+	</tr>
+	<tr>
+		<td id="harmLesser"></td>
+		<td id="harmGreater"></td>
+		<td id="harmComplication"></td>
+	</tr>
+</table>
+
 <h2>Oracle Move</h2>
 <p id="oracleMove"></p>
 
@@ -24,6 +37,11 @@ const $eM = document.getElementById("errorMessage")
 const $dM = document.getElementById("dramaticMove")
 const $sM = document.getElementById("striveMove")
 const $oM = document.getElementById("oracleMove")
+
+const $hI = document.getElementById("harmIdeas")
+const $hIL = document.getElementById("harmLesser")
+const $hIG = document.getElementById("harmGreater")
+const $hIC = document.getElementById("harmComplication")
 
 import('./calypso.js')
   .then((module) => {
@@ -37,6 +55,17 @@ import('./calypso.js')
     $dM.textContent = `${c_dM.dice.rolls[0]},${c_dM.dice.rolls[1]}: ${c_dM.result}`
     
     $sM.textContent = `${c_sM.dice.total} (${c_sM.dice.rolls[0]},${c_sM.dice.rolls[1]}, mod: ${c_sM.modifier}): ${c_sM.result}`
+    
+    if (c_sM.dice.total < 10) {
+    	let c_hIL = C.lesser_danger()
+    	let c_hIG = C.greater_danger()
+    	let c_hIC = C.complication()
+    	
+    	$hI.setAttribute("style","display:table;")
+    	$hIL.textContent = `${c_hIL.result}`
+    	$hIG.textContent = `${c_hIG.result}`
+    	$hIC.textContent = `${c_hIC.result}`
+    }
     
     $oM.textContent = `${c_oM.dice.total} (${c_oM.dice.rolls[0]},${c_oM.dice.rolls[1]}, mod: ${c_oM.modifier}): ${c_oM.result}`
   })

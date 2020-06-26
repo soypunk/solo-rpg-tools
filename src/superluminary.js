@@ -109,7 +109,7 @@ export default class Superluminary {
 		   99: "Weapons (superheavy)",
 		  100: "Wood"
 		}
-		return this.utils.table__d100_lookup(table)
+		return utils.table__d100_lookup(table)
 	}
 
 	pocket_dimension(){
@@ -125,7 +125,7 @@ export default class Superluminary {
 			9: "The phantom zone",
 			10: "The river of time"
 		}		
-		return this.utils.table_d10_lookup(table)
+		return utils.table_d10_lookup(table)
 	}
 
 	predator_special_abilities(){
@@ -181,7 +181,7 @@ export default class Superluminary {
 			"Use Technology",
 			"Web Spinner"
 		]
-		return this.utils.table_random_lookup(table, 3)	
+		return utils.table_random_lookup(table, 3)	
 	}
 
 	predator_flaw(){
@@ -237,7 +237,7 @@ export default class Superluminary {
 			"Vulnerable to Psionics",
 			"Vulnerable to Radiation"
 		]
-		return this.utils.table_random_lookup(table)
+		return utils.table_random_lookup(table)
 	}
 
 	npc_personality_trait(){
@@ -345,7 +345,7 @@ export default class Superluminary {
 			"Xenophobic"
 		]
 		
-		return this.utils.table_random_lookup(table)
+		return utils.table_random_lookup(table)
 	}
 	
 
@@ -455,7 +455,7 @@ export default class Superluminary {
 		   99: "Vibro-halberd with built-in blaster",
 		  100: "Wrist-mounted rocket launcher"
 		}
-		return this.utils.table__d100_lookup(table)
+		return utils.table__d100_lookup(table)
 	}
 	
 	world_planet_type(){
@@ -494,9 +494,9 @@ export default class Superluminary {
 		let roll = utils.rollDice(1, 100)
 		
 		if (roll.total == 100) {
-			return this.utils.table_random_lookup(table, 2)
+			return utils.table_random_lookup(table, 2)
 		} else {
-			return this.utils.table_random_lookup(table)
+			return utils.table_random_lookup(table)
 		}			
 	}
 	
@@ -553,10 +553,10 @@ export default class Superluminary {
 			"Turbo Boosters",
 			"Unreliable Autopilot",
 			"Unstable Power Source",
-			"Vulnerable Exhaust Port	"
+			"Vulnerable Exhaust Port"
 		]			
 		
-		return this.utils.table_random_lookup(table)
+		return utils.table_random_lookup(table)
 	}
 
 	city_encounter(){
@@ -662,7 +662,7 @@ export default class Superluminary {
 			"Complicated situation – roll twice."
 		]
 		
-		return this.utils.table_random_lookup(table)
+		return utils.table_random_lookup(table)
 	}
 
 	space_encounter(){}
