@@ -14,6 +14,10 @@
   <dd id="superluminaryNPCPersonalityTrait"></dd>
   <dt>Pocket Dimension</dt>
   <dd id="superluminaryPocketDimension"></dd>
+  <dt>Predator Special Abilities</dt>
+  <dd id="superluminaryPredatorSpecialAbilities"></dd>
+  <dt>Predator Flaw</dt>
+  <dd id="superluminaryPredatorFlaw"></dd>
   <dt>War Machine</dt>
   <dd id="superluminaryWarMachine"></dd>
   <dt>Weapon</dt>
@@ -84,6 +88,8 @@ $stC = document.getElementById("statContainer")
 $slC = document.getElementById("superluminaryCargo")
 $slNPC = document.getElementById("superluminaryNPCPersonalityTrait")
 $slPD = document.getElementById("superluminaryPocketDimension")
+$slPF = document.getElementById("superluminaryPredatorFlaw")
+$slPSA = document.getElementById("superluminaryPredatorSpecialAbilities")
 $slWM = document.getElementById("superluminaryWarMachine")
 $slW = document.getElementById("superluminaryWeapon")
 /*
@@ -108,12 +114,16 @@ import('./superluminary.js')
     let slC = SL.cargo()
     let slNPC = SL.npc_personality_trait()
     let slPD = SL.pocket_dimension()
+    let slPF = SL.predator_flaw()
+    let slPSA = SL.predator_special_abilities()
     let slWM = SL.war_machine_trait()
-    let slW = SL.weapon()    
+    let slW = SL.weapon()
     
     $slC.textContent = `${slC.result}`
     $slNPC.textContent = `${slNPC.result}`
     $slPD.textContent = `${slPD.result}`
+    $slPF.textContent = `${slPF.result}`
+    $slPSA.textContent = `${slPSA.result}`
     $slWM.textContent = `${slWM.result}`
     $slW.textContent = `${slW.result}`
   })

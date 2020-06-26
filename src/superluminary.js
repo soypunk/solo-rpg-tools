@@ -8,11 +8,15 @@ export default class Superluminary {
 
 	_random_lookup(table, number_of_results=1) {
 		let result = utils.getRandom(table, number_of_results)
+		let raw_result = result
 		if (number_of_results == 1) {
 			result = result[0]
+		} else {			
+			result = utils.arrayToSentence(result)	
 		}
 		return {
 			"roll": null,
+			"raw_result": raw_result,
 			"result": result,
 			"table": table
 		}
@@ -52,8 +56,116 @@ export default class Superluminary {
 		return this._d10_lookup(table)
 	}
 
-	flaw(){
-		
+	predator_special_abilities(){
+		let table = [
+			"Acid for Blood",
+			"Armoured Carapace",
+			"Batlike Wings",
+			"Battle Frenzy",
+			"Blend into Surroundings",
+			"Body Spikes",
+			"Breathe Fire",
+			"Breathe Poisonous Gas",
+			"Drain Life Energy",
+			"Electricity Field",
+			"Enhanced Senses",
+			"Face Tentacles",
+			"Feathered Wings",
+			"Feels No Pain",
+			"Four Arms",
+			"Giant-Sized",
+			"Grappling Tentacles",
+			"Horns",
+			"Horrendous Stench",
+			"Immune to Energy Weapons",
+			"Immune to Kinetic Weapons",
+			"Immune to Psionics",
+			"Incredible Speed",
+			"Incredible Strength",
+			"nfectious Disease",
+			"Insectoid Wings",
+			"Lashing Tail",
+			"Lightning Reflexes",
+			"Mind Control Tendrils",
+			"Phase into Hyperspace",
+			"Pincer Claws",
+			"Plasma Bolt",
+			"Poisonous Sting",
+			"Poo Out a Minion",
+			"Powerful Leap",
+			"Psychic Shriek",
+			"Radioactive",
+			"Regenerate",
+			"Return from the Dead Even Angrier",
+			"Shapeshifter",
+			"Spit Acid",
+			"Telekinesis",
+			"Telepath",
+			"Teleport",
+			"Terrifying Appearance",
+			"Tough Hide",
+			"Trail of Slime",
+			"Two Heads",
+			"Use Technology",
+			"Web Spinner"
+		]
+		return this._random_lookup(table, 3)	
+	}
+
+	predator_flaw(){
+		let table = [
+			"Accidentally Destroys Surroundings",
+			"Afraid of Fire",
+			"Afraid of Sunlight",
+			"Afraid of Water",
+			"Attacks Own Injuries When Hurt",
+			"Attacks Own Reflection",
+			"Berserk Rage",
+			"Blind",
+			"Blind Spot",
+			"Brittle Bones",
+			"Can Only Sense Heat Patterns",
+			"Can Only Sense Movement",
+			"Can’t Control Powers",
+			"Can’t Get Back Up if Knocked Over",
+			"Can’t Leave Own Territory",
+			"Can’t Resist a Direct Challenge",
+			"Can’t Turn Around Easily",
+			"Chink in Armour",
+			"Claustrophobic",
+			"Clumsy Giant",
+			"Deaf",
+			"Defers to Alpha",
+			"Desperately Hungry",
+			"Easily Tricked",
+			"Extremely Flammable",
+			"Extremely Heavy",
+			"Fascinated by Shiny Things",
+			"Flees from Stronger Foes",
+			"Immediately Feeds on Downed Victims",
+			"Old Injury",
+			"Overconfident",
+			"Powers Need Time to Recharge",
+			"Reckless Curiosity",
+			"Roars Loudly All the Time",
+			"Runs and Hides When Startled",
+			"Sensitive to Bright Lights",
+			"Sensitive to Loud Noises",
+			"Short Reach",
+			"Short-Sighted",
+			"Slow Mover",
+			"Smells Bad",
+			"Stupid",
+			"Stymied by Obstacles",
+			"Tires Quickly",
+			"Very Short Memory",
+			"Vulnerable to Bacteria",
+			"Vulnerable to Bladed Weapons",
+			"Vulnerable to Fire",
+			"Vulnerable to Psionics",
+			"Vulnerable to Radiation"
+		]
+		return this._random_lookup(table)
 	}
 
 	npc_personality_trait(){
@@ -438,8 +550,6 @@ export default class Superluminary {
 		
 		return this._random_lookup(table)
 	}
-
-	special_abilities(){}
 
 	city_encounter(){}
 
