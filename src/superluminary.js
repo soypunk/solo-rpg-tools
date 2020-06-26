@@ -10,7 +10,8 @@ export default class Superluminary {
 		let roll = utils.rollDice(1, 10)
 		return {
 			"roll": roll.total,
-			"result": table[roll.total] 
+			"result": table[roll.total],
+			"table": table
 		}
 	}
 	
@@ -18,7 +19,8 @@ export default class Superluminary {
 		let roll = utils.d100()
 		return {
 			"roll": roll,
-			"result": table[roll] 
+			"result": table[roll],
+			"table": table
 		}
 	}
 
@@ -44,7 +46,111 @@ export default class Superluminary {
 
 	npc_personality_trait(){}
 	
-	cargo(){}
+	cargo(){
+		let table = {
+			1: "1,000 copies of owner’s manual for a 2053 Iron Falcon",
+			2: "A giant bomb that begins counting down as soon as the characters open or scan it",
+			3: "Air filters",
+			4: "Alien crystals that amplify psychic abilities",
+			5: "Alien crystals that nullify psychic abilities",
+			6: "Alien fruit (delicious)",
+			7: "Alien fruit (trippy)",
+			8: "Ammo/energy clips",
+			9: "Armour (Kevlar)",
+		   10: "Armour (plasteel)",
+		   11: "Armour (powered)",
+		   12: "Batteries",
+		   13: "Bone/ivory",
+		   14: "Books (antique)",
+		   15: "Camera drones",
+		   16: "Carpets and fine rugs",
+		   17: "Circuitboards",
+		   18: "Circuitboards infested with ferrus worms",
+		   19: "Clothing (cheap)",
+		   20: "Clothing (fine)",
+		   21: "Clothing (haute couture)",
+		   22: "Complete archive of holovids",
+		   23: "Components for a giant supercomputer",
+		   24: "Computer chips",
+		   25: "Confidential files belonging to the local authorities",
+		   26: "Credit chips (forged)",
+		   27: "Credit chips (real but marked)",
+		   28: "Cybernetic limbs",
+		   29: "Dead bodies (frozen)",
+		   30: "Drugs (combat)",
+		   31: "Drugs (medical)",
+		   32: "Drugs (recreational)",
+		   33: "Dry rations",
+		   34: "Empty!",
+		   35: "Engine parts",
+		   36: "Exotic alien plants",
+		   37: "Explosives",
+		   38: "Fine art",
+		   39: "Flatpack furniture",
+		   40: "Food paste",
+		   41: "Food pills",
+		   42: "Frozen meat",
+		   43: "Fuel cells",
+		   44: "Gas canisters",
+		   45: "Gems and jewellery (cheap)",
+		   46: "Gems and jewellery (expensive)",
+		   47: "Gold bars",
+		   48: "Hidden refugees",
+		   49: "Holofilm records of a doomed expedition to an alien world",
+		   50: "Holovid recording equipment",		   
+		   51: "Home entertainment systems",
+		   52: "Hyperdrive coils",
+		   53: "Imperial propaganda",
+		   54: "Infamous bounty hunter Bandem Tor, frozen in carbonite",
+		   55: "Jetpacks",
+		   56: "Liquor",
+		   57: "Live cattle",
+		   58: "Lovebots",
+		   59: "Medical supplies",
+		   60: "Metal ore",
+		   61: "Miniature nuclear generators",
+		   62: "Necrophage eggs",
+		   63: "Oil drums",
+		   64: "Personal computers",
+		   65: "Plastic sheeting",
+		   66: "Platinum bars",
+		   67: "Poison gas canisters",
+		   68: "Quantum amplifier",
+		   69: "Radiation capsules",
+		   70: "Rocketbikes",
+		   71: "Rotmeat spyders",
+		   72: "Scanners",
+		   73: "Scrap metal (cheap)",
+		   74: "Scrap metal (expensive)",
+		   75: "Scrap metal (irradiated)",
+		   76: "Security equipment",
+		   77: "Silver bars",
+		   78: "Skeletons and tissue samples of an unknown alien species",
+		   79: "Small animals frozen for experimentation",
+		   80: "Space suits (basic)",
+		   81: "Space suits (combat)",
+		   82: "Space suits (damaged)",
+		   83: "Spare robot parts",
+		   84: "Sports equipment",
+		   85: "Statue of the Emperor (disassembled)",
+		   86: "Strange alien idol (cursed)",
+		   87: "Stuffed animals/hunting trophies",
+		   88: "Synthi-grain",
+		   89: "Terraforming equipment",
+		   90: "Tools",
+		   91: "Uniforms (military)",
+		   92: "Uniforms (security)",
+		   93: "Uniforms (takeout restaurant)",
+		   94: "Various urns and artifacts from a xenoarchaeological dig site",
+		   95: "Vat-grown organs",
+		   96: "Water",
+		   97: "Weapons (military-grade)",
+		   98: "Weapons (personal defence)",
+		   99: "Weapons (superheavy)",
+		  100: "Wood"
+		}
+		return this._d100_lookup(table)
+	}
 	
 	ship_trait(){}
 	

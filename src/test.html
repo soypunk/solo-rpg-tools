@@ -8,6 +8,8 @@
 
 <h2>Random Tables</h2>
 <dl>
+  <dt>Cargo</dt>
+  <dd id="superluminaryCargo"></dd>
   <dt>Pocket Dimensions</dt>
   <dd id="superluminaryPocketD"></dd>
   <dt>Weapon</dt>
@@ -75,6 +77,7 @@ $sC = document.getElementById("sceneContainer")
 $dC = document.getElementById("detailContainer")
 $stC = document.getElementById("statContainer")
 
+$slC = document.getElementById("superluminaryCargo")
 $slPD = document.getElementById("superluminaryPocketD")
 $slW = document.getElementById("superluminaryWeapon")
 /*
@@ -96,9 +99,11 @@ import('./superluminary.js')
     const Superluminary = module.default
     let SL = new Superluminary()
     
+    let slC = SL.cargo()
     let slPD = SL.pocket_dimension()
     let slW = SL.weapon()
     
+    $slC.textContent = `${slC.result}`
     $slPD.textContent = `${slPD.result}`
     $slW.textContent = `${slW.result}`
   })
