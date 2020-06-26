@@ -59,7 +59,7 @@ export default class Superluminary {
 			7: "Autolaser",
 			8: "Battleglove",
 			9: "Black light gun",
-		   10: "Blast pistol with red dot laser sight",
+		   10: "Blast pistol with red dot laser sight",
 		   11: "Carbon pistol",
 		   12: "Chainsaw",
 		   13: "Continuous beam projector",

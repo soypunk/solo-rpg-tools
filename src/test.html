@@ -10,6 +10,8 @@
 <dl>
   <dt>Pocket Dimensions</dt>
   <dd id="superluminaryPocketD"></dd>
+  <dt>Weapon</dt>
+  <dd id="superluminaryWeapon"></dd>
 </dl>
 
 <h2>Adventure Crafter</h2>
@@ -73,6 +75,8 @@ $sC = document.getElementById("sceneContainer")
 $dC = document.getElementById("detailContainer")
 $stC = document.getElementById("statContainer")
 
+$slPD = document.getElementById("superluminaryPocketD")
+$slW = document.getElementById("superluminaryWeapon")
 /*
 import('./utils.js')
   .then((module) => {
@@ -91,11 +95,12 @@ import('./superluminary.js')
   .then((module) => {
     const Superluminary = module.default
     let SL = new Superluminary()
-    $slPD = document.getElementById("superluminaryPocketD")
     
     let slPD = SL.pocket_dimension()
+    let slW = SL.weapon()
     
     $slPD.textContent = `${slPD.result}`
+    $slW.textContent = `${slW.result}`
   })
   .catch(err => {
     $slPD.textContent = err
