@@ -73,11 +73,12 @@ export default class Calypso {
 	
 	strive(modifier=0) {
 		if (modifier > 4) { modifier = 4 } // page 6 "building a modifier"
-		let roll = utils.rollDice(2, 6)	
+		let roll = utils.rollDice(2, 6)
 		let total = roll.total + modifier
 		let result = ""
 	
 		if (total >= 10) {
+			let currency = utils.rollDice(1, 3)
 			result = "You succeed at the goal and avoid the risk. Choose one that fits: gain 1d6/2 Currency, gain a +2 bonus on the next Strive roll, or lose, change, or gain a Condition."
 		} else if (total >=7 && total <=9) {
 			result = "You succeed at the goal or avoid the risk, your choice. If you choose success, deliver the risk by following up on a previous soft Move with the consequences or playing a new hard Move. Otherwise, introduce a new soft Move that makes achieving the goal harder."
