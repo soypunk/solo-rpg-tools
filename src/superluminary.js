@@ -6,40 +6,6 @@ export default class Superluminary {
 	constructor(){
 	}
 
-	_random_lookup(table, number_of_results=1) {
-		let result = utils.getRandom(table, number_of_results)
-		let raw_result = result
-		if (number_of_results == 1) {
-			result = result[0]
-		} else {			
-			result = utils.arrayToSentence(result)	
-		}
-		return {
-			"roll": null,
-			"raw_result": raw_result,
-			"result": result,
-			"table": table
-		}
-	}
-
-	_d10_lookup(table){
-		let roll = utils.rollDice(1, 10)
-		return {
-			"roll": roll.total,
-			"result": table[roll.total],
-			"table": table
-		}
-	}
-	
-	_d100_lookup(table){
-		let roll = utils.d100()
-		return {
-			"roll": roll,
-			"result": table[roll],
-			"table": table
-		}
-	}
-
 	cargo(){
 		let table = {
 			1: "1,000 copies of owner’s manual for a 2053 Iron Falcon",
@@ -143,7 +109,7 @@ export default class Superluminary {
 		   99: "Weapons (superheavy)",
 		  100: "Wood"
 		}
-		return this._d100_lookup(table)
+		return this.utils.table__d100_lookup(table)
 	}
 
 	pocket_dimension(){
@@ -159,7 +125,7 @@ export default class Superluminary {
 			9: "The phantom zone",
 			10: "The river of time"
 		}		
-		return this._d10_lookup(table)
+		return this.utils.table_d10_lookup(table)
 	}
 
 	predator_special_abilities(){
@@ -215,7 +181,7 @@ export default class Superluminary {
 			"Use Technology",
 			"Web Spinner"
 		]
-		return this._random_lookup(table, 3)	
+		return this.utils.table_random_lookup(table, 3)	
 	}
 
 	predator_flaw(){
@@ -271,7 +237,7 @@ export default class Superluminary {
 			"Vulnerable to Psionics",
 			"Vulnerable to Radiation"
 		]
-		return this._random_lookup(table)
+		return this.utils.table_random_lookup(table)
 	}
 
 	npc_personality_trait(){
@@ -379,7 +345,7 @@ export default class Superluminary {
 			"Xenophobic"
 		]
 		
-		return this._random_lookup(table)
+		return this.utils.table_random_lookup(table)
 	}
 	
 
@@ -489,7 +455,7 @@ export default class Superluminary {
 		   99: "Vibro-halberd with built-in blaster",
 		  100: "Wrist-mounted rocket launcher"
 		}
-		return this._d100_lookup(table)
+		return this.utils.table__d100_lookup(table)
 	}
 	
 	world_planet_type(){
@@ -528,9 +494,9 @@ export default class Superluminary {
 		let roll = utils.rollDice(1, 100)
 		
 		if (roll.total == 100) {
-			return this._random_lookup(table, 2)
+			return this.utils.table_random_lookup(table, 2)
 		} else {
-			return this._random_lookup(table)
+			return this.utils.table_random_lookup(table)
 		}			
 	}
 	
@@ -590,7 +556,7 @@ export default class Superluminary {
 			"Vulnerable Exhaust Port	"
 		]			
 		
-		return this._random_lookup(table)
+		return this.utils.table_random_lookup(table)
 	}
 
 	city_encounter(){
@@ -696,7 +662,7 @@ export default class Superluminary {
 			"Complicated situation – roll twice."
 		]
 		
-		return this._random_lookup(table)
+		return this.utils.table_random_lookup(table)
 	}
 
 	space_encounter(){}

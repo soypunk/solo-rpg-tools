@@ -359,7 +359,7 @@ export default class MythicGME {
 		  "value": attribute_value,
 		  "dice": {
     		    "rolls": rolls.diceRolls,
-		    "total": total
+		    	"total": total
 		  }
 	  }
 	}

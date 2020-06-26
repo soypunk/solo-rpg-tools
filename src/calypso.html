@@ -1,0 +1,33 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Solo RPG Tools Test: Calypso</title>
+
+<main id="main" role="main">
+
+<h1>Calypso</h1>
+
+<pre id="errorMessage"></pre>
+
+<h2>Dramatic Move</h2>
+<p id="dramaticMove"></p>
+
+</main>
+
+<script defer>
+$eM = document.getElementById("errorMessage")
+$dM = document.getElementById("dramaticMove")
+
+import('./calypso.js')
+  .then((module) => {
+    const Calypso = module.default
+    let C = new Calypso()
+    
+    let c_dM = C.dramatic_move()
+    
+    $dM.textContent = `${c_dM.dice.rolls.diceRolls[0]},${c_dM.dice.rolls.diceRolls[1]}: ${c_dM.result}`
+  })
+  .catch(err => {
+    $eM.textContent = err
+  });
+
+</script>

@@ -132,6 +132,40 @@ class Utils {
 			'total': total
 		}
 	}
+	
+	table_random_lookup(table, number_of_results=1) {
+		let result = this.getRandom(table, number_of_results)
+		let raw_result = result
+		if (number_of_results == 1) {
+			result = result[0]
+		} else {			
+			result = this.arrayToSentence(result)	
+		}
+		return {
+			"roll": null,
+			"raw_result": raw_result,
+			"result": result,
+			"table": table
+		}
+	}
+
+	table_d10_lookup(table){
+		let roll = this.rollDice(1, 10)
+		return {
+			"roll": roll.total,
+			"result": table[roll.total],
+			"table": table
+		}
+	}
+	
+	table_d100_lookup(table){
+		let roll = this.d100()
+		return {
+			"roll": roll,
+			"result": table[roll],
+			"table": table
+		}
+	}	
 }
 
 export default Utils
