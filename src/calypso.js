@@ -96,6 +96,105 @@ export default class Calypso {
 		}
 	}
 	
+	race_the_clock(modifier=0) {
+		if (modifier > 4) { modifier = 4 } // page 6 "modifiers"
+		let roll = utils.rollDice(2, 6)
+		let total = roll.total + modifier
+		let result = ""
+		
+		let resultOptions = `
+* Down to the wire: Existing situations progress and evolve before you finish.
+* Distraction : A problem crops up, but you’re busy. Someone else deal with it.
+* Cut corners: You won’t get everything. The GM will offer you a hard choice.
+* Pushed to the limit: Completing the task causes Stress.
+* Gain a light d6 as Currency.
+`
+		
+		if (total >= 10) {
+			let currency = utils.rollDice(1, 3)
+			result = "On a 10+, you’ll complete the task. Choose one:" + resultOptions
+		} else if (total >=7 && total <=9) {
+			result = "On a 7-9, choose two from the list:" + resultOptions
+		} else {
+			result = "On a 6-, the countdown reaches zero, time runs out, the chance for success slips through your fingers. You are left to deal with the fallout. Take a dark d6 as Currency."
+		}
+			
+		return {
+			"dice": {
+				"rolls": roll.diceRolls,
+				"total": total
+			},
+			"modifier": modifier,
+			"result": result
+		}
+	}
+
+	seek_the_truth(modifier=0) {
+		if (modifier > 4) { modifier = 4 } // page 6 "modifiers"
+		let roll = utils.rollDice(2, 6)
+		let total = roll.total + modifier
+		let result = ""
+		
+		let resultOptions = `
+* I know a guy: Someone important, reclusive, or unfriendly has the answers.
+* Tread lightly: The answers are found in a hostile, unpleasant location.
+* Time sensitive: The answers won’t be available much longer. Hurry.
+* Dirty business: Getting the answers takes a lot out of you. Suffer Stress.
+* Gain a light d6 as Currency.
+`
+		
+		if (total >= 10) {
+			let currency = utils.rollDice(1, 3)
+			result = "On a 10+, you’ve got a solid lead. Choose one:" + resultOptions
+		} else if (total >=7 && total <=9) {
+			result = "On a 7-9, choose two from the list above:" + resultOptions
+		} else {
+			result = "On a 6-, you find trouble, or trouble finds you. Take a dark d6 as Currency."
+		}
+			
+		return {
+			"dice": {
+				"rolls": roll.diceRolls,
+				"total": total
+			},
+			"modifier": modifier,
+			"result": result
+		}
+	}
+	
+	confront_the_enemy(modifier=0) {
+		if (modifier > 4) { modifier = 4 } // page 6 "modifiers"
+		let roll = utils.rollDice(2, 6)
+		let total = roll.total + modifier
+		let result = ""
+		
+		let resultOptions = `
+* Hold them off: Keep them busy. They can’t act or cause harm for now.
+* Push them back: Change the location and/or position of the conflict.
+* Hit them hard: They are shaken, weakened, hurt, or reduced in some way.
+* Take them out: You have them now. Choose their fate if you have the upper hand.
+* Gain a light d6 as Currency.
+`
+		
+		if (total >= 10) {
+			let currency = utils.rollDice(1, 3)
+			result = "On a 10+, choose one. They cause harm (stress, costs), then you make a second choice:" + resultOptions
+		} else if (total >=7 && total <=9) {
+			result = "On a 7-9, the situation escalates dramatically. The stakes are higher, the consequences harsher. You can back down now. If not, choose 1, and they cause harm:" + resultOptions
+		} else {
+			result = "On a 6-, you suffer Stress and are thrown into a new situation that they dictate. Take a dark d6 as Currency."
+		}
+			
+		return {
+			"dice": {
+				"rolls": roll.diceRolls,
+				"total": total
+			},
+			"modifier": modifier,
+			"result": result
+		}
+	}
+	
 	strive(modifier=0) {
 		if (modifier > 4) { modifier = 4 } // page 6 "modifiers"
 		let roll = utils.rollDice(2, 6)
