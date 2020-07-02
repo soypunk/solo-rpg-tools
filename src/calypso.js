@@ -281,7 +281,7 @@ export default class Calypso {
 	
 		if (roll.diceRolls[0] == roll.diceRolls[1]) {
 			let dramatic_move = this.dramatic_move()
-			result = `${result} Flawed Assumption: ${dramatic_move.result}`
+			result = `${result} Flawed Assumption: ${dramatic_move.result} (Take a dark die)`
 		}
 	
 		return {
