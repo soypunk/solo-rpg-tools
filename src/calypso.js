@@ -195,10 +195,10 @@ export default class Calypso {
 		}
 	}
 	
-	strive(modifier=0, keep="normal") {
+	strive(modifier=0, keep="high") {
 		if (modifier > 4) { modifier = 4 } // page 6 "modifiers"
 		let num_dice = 2
-		let roll = utils.rollDice(num_dice, 6, true, keep)				
+		let roll = utils.rollDice(num_dice, 6, true, keep)
 		let total = roll.total + modifier
 		let result = ""
 	

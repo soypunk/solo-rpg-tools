@@ -8,6 +8,8 @@
 
 <pre id="errorMessage"></pre>
 
+<pre id="utilsTest"></pre>
+
 <h2>Dramatic Move</h2>
 <p id="dramaticMove"></p>
 
@@ -36,6 +38,8 @@
 
 <script defer>
 const $eM = document.getElementById("errorMessage")
+const $uT = document.getElementById("utilsTest")
+
 const $dM = document.getElementById("dramaticMove")
 const $sM = document.getElementById("striveMove")
 const $oM = document.getElementById("oracleMove")
@@ -45,6 +49,17 @@ const $hIL = document.getElementById("harmLesser")
 const $hIOG = document.getElementById("harmGeneral")
 const $hIG = document.getElementById("harmGreater")
 const $hIC = document.getElementById("harmComplication")
+
+import('./utils.js')
+  .then((module) => {
+    const Utils = module.default
+    let U = new Utils()
+    let roll = U.rollDice(2,6,true,"high")
+    $uT.textContent = JSON.stringify(roll)
+  })
+  .catch(err => {
+    $eM.textContent = err
+  });
 
 import('./calypso.js')
   .then((module) => {

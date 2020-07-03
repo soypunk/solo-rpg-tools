@@ -131,29 +131,31 @@ class Utils {
 			diceRolls.push(dieRoll)
 		}
 		
+		console.log(diceRolls)
+		
 		if (keep == "high" || keep == "low") {
 			if (keep == "high") {
-				var highDice = diceRolls
+				var highDice = diceRolls.slice(0)
 				highDice.sort()
+				highDice.reverse()
 				highDice.splice(-1,1)
 				total = highDice.reduce((a, b) => a + b, 0)
 			} else if (keep == "low") {
-				var lowDice = diceRolls
+				var lowDice = diceRolls.slice(0)
 				lowDice.sort()
-				lowDice.reverse()
 				lowDice.splice(-1,1)
 				total = lowDice.reduce((a, b) => a + b, 0)
 			}
 						
 		} else {
 			total = diceRolls.reduce((a, b) => a + b, 0)
-		}		
+		}
 		
 		return {
 			'numSides': sides, 
 			'numRolled': numRolled,
 			'diceRolls': diceRolls,
-			'total': total
+			'total': total			
 		}
 	}
 	
