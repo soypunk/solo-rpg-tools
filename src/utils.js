@@ -116,15 +116,39 @@ class Utils {
 		}
 	}
 	
-	rollDice(num=1, sides=6, correct_rolls=true){
+	rollDice(num=1, sides=6, correct_rolls=true, keep="normal"){
 		var total = 0
 		var diceRolls = []
+		
+		if (keep == "high" || keep == "low") {
+			num = num + 1
+		}
+		
 		var numRolled = num
+				
 		while (num-- > 0) {
 			let dieRoll = this.rollDie(sides, correct_rolls)
-			total += dieRoll
 			diceRolls.push(dieRoll)
 		}
+		
+		if (keep == "high" || keep == "low") {
+			if (keep == "high") {
+				var highDice = diceRolls
+				highDice.sort()
+				highDice.splice(-1,1)
+				total = highDice.reduce((a, b) => a + b, 0)
+			} else if (keep == "low") {
+				var lowDice = diceRolls
+				lowDice.sort()
+				lowDice.reverse()
+				lowDice.splice(-1,1)
+				total = lowDice.reduce((a, b) => a + b, 0)
+			}
+						
+		} else {
+			total = diceRolls.reduce((a, b) => a + b, 0)
+		}		
+		
 		return {
 			'numSides': sides, 
 			'numRolled': numRolled,

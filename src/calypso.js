@@ -96,9 +96,9 @@ export default class Calypso {
 		}
 	}
 	
-	race_the_clock(modifier=0) {
+	race_the_clock(modifier=0, keep="normal") {
 		if (modifier > 4) { modifier = 4 } // page 6 "modifiers"
-		let roll = utils.rollDice(2, 6)
+		let roll = utils.rollDice(2, 6, true, keep)
 		let total = roll.total + modifier
 		let result = ""
 		
@@ -129,9 +129,9 @@ export default class Calypso {
 		}
 	}
 
-	seek_the_truth(modifier=0) {
+	seek_the_truth(modifier=0, keep="normal") {
 		if (modifier > 4) { modifier = 4 } // page 6 "modifiers"
-		let roll = utils.rollDice(2, 6)
+		let roll = utils.rollDice(2, 6, true, keep)
 		let total = roll.total + modifier
 		let result = ""
 		
@@ -162,9 +162,9 @@ export default class Calypso {
 		}
 	}
 	
-	confront_the_enemy(modifier=0) {
+	confront_the_enemy(modifier=0, keep="normal") {
 		if (modifier > 4) { modifier = 4 } // page 6 "modifiers"
-		let roll = utils.rollDice(2, 6)
+		let roll = utils.rollDice(2, 6, true, keep)
 		let total = roll.total + modifier
 		let result = ""
 		
@@ -195,19 +195,19 @@ export default class Calypso {
 		}
 	}
 	
-	strive(modifier=0) {
+	strive(modifier=0, keep="normal") {
 		if (modifier > 4) { modifier = 4 } // page 6 "modifiers"
-		let roll = utils.rollDice(2, 6)
+		let num_dice = 2
+		let roll = utils.rollDice(num_dice, 6, true, keep)				
 		let total = roll.total + modifier
 		let result = ""
 	
 		if (total >= 10) {
-			let currency = utils.rollDice(1, 3)
 			result = "You succeed at the goal and avoid the danger entirely. Choose a bonus: you gain a light d6 as Currency or someone loses (or changes) a Condition in a fictionally appropriate way."
 		} else if (total >=7 && total <=9) {
 			result = "You succeed, but suffer a lesser danger. You may opt to fail instead, or to increase the lesser danger to a greater one, in exchange for choosing a bonus."
 		} else {
-			result = "You fail, and the full severity of the danger hits you. Take a dark d6 as Currency. If you’re striving against a foe, add a Con‐ dition to them that makes it harder for you to overcome them in the way you failed to strive."
+			result = "You fail, and the full severity of the danger hits you. Take a dark d6 as Currency. If you’re striving against a foe, add a Condition to them that makes it harder for you to overcome them in the way you failed to strive."
 		}
 			
 		return {
@@ -256,8 +256,8 @@ export default class Calypso {
 		return utils.table_random_lookup(table)		
 	}	
 	
-	oracle(modifier=0) {
-		let roll = utils.rollDice(2, 6)	
+	oracle(modifier=0, keep="normal") {
+		let roll = utils.rollDice(2, 6, true, keep)	
 		let total = roll.total + modifier
 		let result = ""
 	
