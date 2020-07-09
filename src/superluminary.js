@@ -109,7 +109,7 @@ export default class Superluminary {
 		   99: "Weapons (superheavy)",
 		  100: "Wood"
 		}
-		return utils.table__d100_lookup(table)
+		return utils.table_d100_lookup(table)
 	}
 
 	pocket_dimension(){
