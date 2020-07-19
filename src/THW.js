@@ -136,8 +136,230 @@ export default class THW {
 						6: "Zhuh-Zhuh"
 					}
 			},
-			2:
-			3:
+			2: {
+				2: {
+					"profession":"Mover",
+					"species": {
+						1: "Basic",
+						2: "Basic",
+						3: "Basic",
+						4: "Basic",
+						5: "Basic",
+						6: "Zhuh-Zhuh"
+					},
+				3: {
+					"profession":"Mover",
+					"species": {
+						1: "Basic",
+						2: "Basic",
+						3: "Basic",
+						4: "Basic",
+						5: "Basic",
+						6: "Zhuh-Zhuh"
+					},
+				4: {
+					"profession":"Shaker",
+					"species": {
+						1: "Basic",
+						2: "Basic",
+						3: "Basic",
+						4: "Razor",
+						5: "Xeog",
+						6: "Zhuh-Zhuh"
+					},
+				5: {
+					"profession":"Shaker",
+					"species": {
+						1: "Basic",
+						2: "Basic",
+						3: "Basic",
+						4: "Razor",
+						5: "Xeog",
+						6: "Zhuh-Zhuh"
+					},
+				6: {
+					"profession":"Exotic",
+					"species": {
+						1: "Basic",
+						2: "Grath",
+						3: "Hishen",
+						4: "Razor",
+						5: "Xeog",
+						6: "Zhuh-Zhuh"
+					},
+				7: {
+					"profession":"Joe - Service",
+					"species": {
+						1: "Basic",
+						2: "Basic",
+						3: "Basic",
+						4: "Basic",
+						5: "Xeog",
+						6: "Zhuh-Zhuh"
+					},
+				8: {
+					"profession":"Joe - Labor",
+					"species": {
+						1: "Basic",
+						2: "Basic",
+						3: "Basic",
+						4: "Zhuh-Zhuh",
+						5: "Zhuh-Zhuh",
+						6: "Hishen"
+					},
+				9:  {
+					"profession":"Joe - Labor",
+					"species": {
+						1: "Basic",
+						2: "Basic",
+						3: "Basic",
+						4: "Zhuh-Zhuh",
+						5: "Zhuh-Zhuh",
+						6: "Hishen"
+					},
+				10: {
+					"profession":"Criminal Element",
+					"species": {
+						1: "Basic",
+						2: "Grath",
+						3: "Hishen",
+						4: "Razor",
+						5: "Xeog",
+						6: "Zhuh-Zhuh"
+					},
+				11: {
+					"profession":"Criminal Element",
+					"species": {
+						1: "Basic",
+						2: "Grath",
+						3: "Hishen",
+						4: "Razor",
+						5: "Xeog",
+						6: "Zhuh-Zhuh"
+					},
+				12: {
+					"profession":"Criminal Element",
+					"species": {
+						1: "Basic",
+						2: "Grath",
+						3: "Hishen",
+						4: "Razor",
+						5: "Xeog",
+						6: "Zhuh-Zhuh"
+					}
+			},
+			3: {
+			    2: {
+					"profession":"Mover",
+					"species": {
+						1: "Basic",
+						2: "Basic",
+						3: "Basic",
+						4: "Basic",
+						5: "Basic",
+						6: "Zhuh-Zhuh"
+					},
+				3: {
+					"profession":"Shaker",
+					"species": {
+						1: "Basic",
+						2: "Basic",
+						3: "Basic",
+						4: "Razor",
+						5: "Xeog",
+						6: "Zhuh-Zhuh"
+					},
+				4: {
+					"profession":"Exotic",
+					"species": {
+						1: "Basic",
+						2: "Grath",
+						3: "Hishen",
+						4: "Razor",
+						5: "Xeog",
+						6: "Zhuh-Zhuh"
+					},
+				5: {
+					"profession":"Exotic",
+					"species": {
+						1: "Basic",
+						2: "Grath",
+						3: "Hishen",
+						4: "Razor",
+						5: "Xeog",
+						6: "Zhuh-Zhuh"
+					},
+				6: {
+					"profession":"Joe - Service",
+					"species": {
+						1: "Basic",
+						2: "Basic",
+						3: "Basic",
+						4: "Basic",
+						5: "Xeog",
+						6: "Zhuh-Zhuh"
+					},
+				7: {
+					"profession":"Joe - Labor",
+					"species": {
+						1: "Basic",
+						2: "Basic",
+						3: "Basic",
+						4: "Zhuh-Zhuh",
+						5: "Zhuh-Zhuh",
+						6: "Hishen"
+					},
+				8: {
+					"profession":"Joe - Labor",
+					"species": {
+						1: "Basic",
+						2: "Basic",
+						3: "Basic",
+						4: "Zhuh-Zhuh",
+						5: "Zhuh-Zhuh",
+						6: "Hishen"
+					},
+				9:  {
+					"profession":"Criminal Element",
+					"species": {
+						1: "Basic",
+						2: "Grath",
+						3: "Hishen",
+						4: "Razor",
+						5: "Xeog",
+						6: "Zhuh-Zhuh"
+					},
+				10: {
+					"profession":"Criminal Element",
+					"species": {
+						1: "Basic",
+						2: "Grath",
+						3: "Hishen",
+						4: "Razor",
+						5: "Xeog",
+						6: "Zhuh-Zhuh"
+					},
+				11: {
+					"profession":"Criminal Element",
+					"species": {
+						1: "Basic",
+						2: "Grath",
+						3: "Hishen",
+						4: "Razor",
+						5: "Xeog",
+						6: "Zhuh-Zhuh"
+					},
+				12: {
+					"profession":"Criminal Element",
+					"species": {
+						1: "Basic",
+						2: "Grath",
+						3: "Hishen",
+						4: "Razor",
+						5: "Xeog",
+						6: "Zhuh-Zhuh"
+					}
+			}
 		}
 		
 	}
