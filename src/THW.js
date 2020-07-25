@@ -373,10 +373,23 @@ export default class THW {
 		}		
 	}
 	
-	leader_generator(planet_class) {
-		let leader = this.who_are_they(planet_class)
-		leader["rep"] = rep_generator(leader.species)
-		return leader
+	leader_generator(planet_class=1) {
+		let npc = this.who_are_they(planet_class)
+		npc["rep"] = rep_generator(leader.species)
+		return npc
+	}
+	
+	npc_generator(planet_class=1,leader_rep=3,same_as_leader_rep=false,profession_result=none) {
+		let npc = this.who_are_they(planet_class,profession_result)
+		if (same_as_leader_rep == true) {
+			npc["rep"] = leader_rep
+		} else {
+			npc["rep"] = leader_rep - 1		
+			if (npc["rep"] < 3) {
+				npc["rep"] = 3
+			}
+		}
+		return npc
 	}
 	
 	rep_generator(species) {
@@ -521,131 +534,152 @@ export default class THW {
 		
 		let how_many = this.how_many_of_them(band_size)
 		let leader = this.leader_generator(planet_class)
+		let npcs = [leader]
+		let npc = none
+		how_many = how_many - 1
+		let same_as_leader_rep = false
 		let leader_rep_max_roll = utils.rollDice(1, 6)
-		let npcs = []
-		let temp_npc = {}
-		let npc_rep = 3
-		let npc_species = "Basic"
-		
-		// we already generated a leader
-		if (how_many > 1) {
-			how_many = how_many - 1
-		} else {
-			how_many = 0
+		if (leader_rep_max_roll.total == 6) {
+			same_as_leader_rep = true
 		}
-		
-		if (leader.profession.includes("Joe")) {
-			
-		} else if (leader.profession == "Mover") {
-			let mpresult = 4
-			if (planet_class < 3) {
-				mpresult = 6
-			}
-			let mover_2npc = who_are_they(planet_class, spresult)
-			let m2npc_roll = utils.rollDice(1,6)
-			if (,2npc_roll.total < 3) {
-				mover_2npc["rep"] = leader.rep	
-			} else {
-				mover_2npc["rep"] = leader.rep + 1
-				if (mover_2npc["rep"] > 5) {
-					mover_2npc["rep"] = 5
-				}
-			}
-			npcs.push(mover_2npc)
-			how_many = how_many - 1
-		
-		} else if (leader.profession == "Shaker") {
-			let spresult = 3
-			if (planet_class < 3) {
-				spresult = 4
-			}
-			
-			let shaker_2npc = who_are_they(planet_class, spresult)
-			let s2npc_roll = utils.rollDice(1,6)
-			if (s2npc_roll.total < 3) {
-				shaker_2npc["rep"] = leader.rep	
-			} else {
-				shaker_2npc["rep"] = leader.rep	+ 1
-				if (shaker_2npc["rep"] > 5) {
-					shaker_2npc["rep"] = 5
-				}
-			}
-			npcs.push(shaker_2npc)
-			how_many = how_many - 1
-		
-		} else if (leader.profession == "Exotic") {
-		
-		} else {
-			if (leader.species == "Razor") {
-				// page 28 special group rule				
-				npcs.push({
-					"profession": "Criminal Element",
-					"species": "Grath",
-					"rep": 4
-				})
-				how_many = how_many - 1
-				
-				if (how_many > 0) {
-					if (leader_rep_max_roll.total > 5) {
-						if (leader.rep > 4) {
-							let temp_rce_species = ["Basic","Zhuh-Zhuh","Xeog"]							
-							let rce_npc_species = temp_rce_species[Math.floor(Math.random() * temp_rce_species.length)]						
-							npcs.push({
-								"profession": "Criminal Element",
-								"species": rce_npc_species,
-								"rep": leader.rep
-							})
-						} else {
-							npcs.push({
-								"profession": "Criminal Element",
-								"species": "Hishen",
-								"rep": leader.rep
-							})
-						}
-					} else {
-						npc_rep = leader.rep - 1	
-						if (npc_rep < 3) {
-							npc_rep = 3
-						}					
-						npcs.push({
-							"profession": "Criminal Element",
-							"species": "Hishen",
-							"rep": npc_rep
-						})						
-					}
-					how_many = how_many - 1
-				}
-				
-				if (how_many > 0) {
-					npc_rep = leader.rep - 1
-					if (npc_rep < 3) {
-						npc_rep = 3
-					}					
-					do {
-						npcs.push({
-							"profession": "Criminal Element",
-							"species": "Hishen",
-							"rep": npc_rep
-						})
-						how_many = how_many - 1
-					} while (how_many > 0)
+		let professional_result = none
+						
+		if (how_many > 0) {							
+
+			if (leader.profession == "Mover") {
+				if (planet_class == 3) {
+					professional_result = 4
+				} else {
+					professional_result = 6
 				}				
-			} else {				
-				do {
-					temp_npc = leader_generator(planet_class)
-					temp_npc.rep = leader.rep - 1
-					if (temp_npc.rep < 3) {
-						temp_npc.rep = 3
+				npc = this.npc_generator(
+					planet_class,
+					leader.rep,
+					same_as_leader_rep,
+					professional_result
+				)
+				let mover_2_rep = utils.rollDice(1, 6)
+				if (mover_2_rep < 3) {
+					npc.rep = leader_rep
+				} else {
+					npc.rep = leader_rep + 1
+					if (npc.rep > 5) {
+						npc.rep = 5
 					}
-					npcs.push(temp_npc)
-					how_many = how_many - 1
-				} while (how_many > 0)			
+				}
+				npcs.push(npc)
+			} else if (leader.profession == "Shaker") {
+				if (planet_class == 3) {
+					professional_result = 3
+				} else {
+					professional_result = 4
+				}
+				npc = this.npc_generator(
+					planet_class,
+					leader.rep,
+					same_as_leader_rep,
+					professional_result
+				)
+				let shaker_2_rep = utils.rollDice(1, 6)
+				if (shaker_2_rep < 3) {
+					npc.rep = leader_rep
+				} else {
+					npc.rep = leader_rep + 1
+					if (npc.rep > 5) {
+						npc.rep = 5
+					}
+				}
+				npcs.push(npc)
+			} else if (leader.profession == "Criminal Element") {
+				if (leader.species == "Razor") {
+					
+				}
+
+			} else if (leader.profession.includes("Joe")) {
+				if (leader.profession == "Joe - Serice") {
+					if (planet_class = 3) {
+						professional_result = 6
+					} else {
+						professional_result = 7
+					}
+				} else {
+					if (planet_class = 3) {
+						professional_result = 8
+					} else {
+						professional_result = 7
+					}
+				}
+
+				npc = this.npc_generator(
+					planet_class,
+					leader.rep,
+					same_as_leader_rep,
+					professional_result
+				)				
+				npcs.push(npc)
+			} else {
+				npc = this.npc_generator(
+					planet_class,
+					leader.rep,
+					same_as_leader_rep,
+					professional_result
+				)			
+				npcs.push(npc)
 			}
-		}
+			how_many = how_many - 1
+			
+			if (how_many > 0) {
+				professional_result = none
+				do {									
+					if (leader.species == "Razor") {
+						npc = {
+							"profession": "Criminal Element",
+							"species": "Hishen",
+							"rep" = this.rep_generator("hishen")
+						}
+						if (npc.rep > leader.rep) {
+							npc.rep = npc.rep - 1
+							if (npc.rep < 3) {
+								npc.rep = 3
+							}
+						}
+					} else if (leader.profession == "Shaker") {
+						if (planet_class == 3) {
+							professional_result = 3
+						} else {
+							professional_result = 4
+						}
+						npc = this.npc_generator(
+							planet_class,
+							leader.rep,
+							same_as_leader_rep,
+							professional_result
+						)						
+					} else if (leader.profession == "Mover") {
+						// one mover, then shakers
+						npc = this.npc_generator(
+							planet_class,
+							leader.rep,
+							same_as_leader_rep,
+							professional_result
+						)
+					} else {
+						npc = this.npc_generator(
+							planet_class,
+							leader.rep,
+							same_as_leader_rep,
+							professional_result
+						)					
+					}
+			
+					npcs.push(npc)					
+					how_many = how_many - 1
+				} while(how_many > 0)
+			}
+		}	
 		
 		return {
 			"planet": planet,
-			"leader": leader,
 			"npcs": npcs
 		}
 	}
@@ -703,6 +737,5 @@ export default class THW {
 	
 	salvage() {
 	}
-	
 	
 }
