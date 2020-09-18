@@ -348,9 +348,61 @@ export default class Superluminary {
 		return utils.table_random_lookup(table)
 	}
 	
-
-	
-	ship_trait(){}
+	ship_trait(){
+		let table = [
+			"Anti-Laser Dispersion Field",
+			"Blink Engine",
+			"Boarding Pods",
+			"Cluster Mines",
+			"Combat Manoeuvre Wings",
+			"Deceleration Ray",
+			"EMP Field",
+			"Forward-Firing Railgun",
+			"FTL Blocking System",
+			"Gatling Laser Cannon",
+			"Heavily Armoured",
+			"Holographic Projector",
+			"Limpet Mines",
+			"Mass Driver",
+			"Massive Jet Thrusters",
+			"Missile Deflector Shield",
+			"Onboard Hacker",
+			"Onboard Telepath",
+			"Onboard VIP",
+			"Particle Accelerator",
+			"Photon Cannon",
+			"Pilot Has a Grudge Against the Player Characters",
+			"Pilot Is a Crack Shot",
+			"Pilot Is Dead, the Ship Is Operating on Autopilot",
+			"Pilot Is One Day from Retirement",
+			"Pilot Is Overconfident",
+			"Reinforced Ramming Spike",
+			"Remote Attack Drones (Buzzsaws)",
+			"Remote Attack Drones (Lasers)",
+			"Repair Drones",
+			"Repulsion Field",
+			"Scything Laser Beam",
+			"Self-Destruct Charge",
+			"Self-Guiding Nukes",
+			"Ship Is About to Explode",
+			"Ship Is Badly Damaged from an Earlier Engagement",
+			"Ship Is Leaking Fuel",
+			"Ship Is Low on Ammo",
+			"Sidewinder Missiles",
+			"Silent Running Mode",
+			"Splits into Two Smaller Ships If Destroyed",
+			"Stealth Field",
+			"Teleporter Ray",
+			"Thermic Lance",
+			"Tractor Beam",
+			"Turboboosters",
+			"Unbreakable Hull",
+			"Unstable Plasma Reactor",
+			"Valuable Cargo",
+			"Vectored Intercept Engines"
+		];
+		return utils.table_random_lookup(table)
+	}
 	
 	weapon(){
 		let table = {
